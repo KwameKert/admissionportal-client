@@ -15,6 +15,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { DatePipe } from '@angular/common';
+import { AuthInterceptor, TokenInterceptor} from './interceptors/index';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,11 @@ import { FlexLayoutModule } from '@angular/flex-layout';
   
     
   ],
-  providers: [],
+  providers: [
+    DatePipe, 
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
