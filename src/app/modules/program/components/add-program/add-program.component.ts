@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CrudService } from 'src/app/modules/shared/service/crud-service.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-program',
@@ -10,8 +11,10 @@ import { CrudService } from 'src/app/modules/shared/service/crud-service.service
 export class AddProgramComponent implements OnInit {
 
   programForm: FormGroup;
+  
+  @Output() newProgram: EventEmitter<boolean> = new EventEmitter();
 
-  constructor(private _crudService: CrudService, private _fb: FormBuilder) { }
+  constructor(private _crudService: CrudService, private _fb: FormBuilder, private _toastr: ToastrService) { }
 
   ngOnInit(): void {
 
@@ -29,7 +32,12 @@ export class AddProgramComponent implements OnInit {
 
     this._crudService.addItem(this.programForm.value,"program").subscribe(data=>{
 
-    }, error=> console.error(error))
+      this._toastr.success(data.message, "Success  😊", {  timeOut:2000});
+      this.newProgram.emit(true)
+    }, error=> {
+    this._toastr.info("Ooops", "Unexpected Error  🥺", {  timeOut:5000});
+      console.error(error)
+    })
   }
 
 

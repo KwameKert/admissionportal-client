@@ -88,7 +88,7 @@
         </div>
 
         <div [ngClass]="addProgramColumn">
-            <app-add-program></app-add-program>
+            <app-add-program (newProgram)="reloadList($event)"></app-add-program>
          
         </div>
       </div>
@@ -96,5 +96,3 @@
     
     </mat-card-content>
 </mat-card>
-
-<app-add-program></app-add-program>

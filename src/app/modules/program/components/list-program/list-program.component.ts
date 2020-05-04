@@ -83,7 +83,7 @@ export class ListProgramComponent implements OnInit {
 
 
 
-  newProgramCreated(event: any){
+  reloadList(event: any){
     this.loadAllPrograms();
   }
 
