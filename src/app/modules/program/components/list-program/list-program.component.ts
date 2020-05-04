@@ -18,7 +18,7 @@ export class ListProgramComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   
   isLoading: boolean = true;
-  dataSource: any = null;
+  dataSource = new MatTableDataSource<any>();
   slide: boolean = false;
 
   isAddProgram: boolean = false;
@@ -43,14 +43,14 @@ export class ListProgramComponent implements OnInit {
   ngOnInit(): void {
     this.getCollumnDefinitions();
     this.loadAllPrograms();
+  
   }
 
 
   loadAllPrograms(){
     this._crudService.fetchAll("program/all").subscribe(data=>{
-      
-    
-      this.dataSource = data;
+
+      this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.isLoading = false;
     }, error=>{
