@@ -1,1 +1,90 @@
-<p>admin-dashboard works!</p>
+<div class="row">
+    <div class="col-md-5">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>
+                    Applicants' Requests
+                </mat-card-title>
+            </mat-card-header>
+            <div class="chart">
+                <canvas baseChart 
+                height="35vh" width="50vw"
+                  [data]="pieChartData"
+                  [labels]="pieChartLabels"
+                  [chartType]="pieChartType"
+                  [options]="pieChartOptions"
+                  [plugins]="pieChartPlugins"
+                  [colors]="pieChartColors"
+                  [legend]="pieChartLegend">
+                </canvas>
+              </div>
+        </mat-card>
+       
+    </div>
+    <div class="col-md-7">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>
+                    Recent Activities
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="col-md-3">
+        <mat-card>
+            <mat-card-content>
+                <div class="row">
+
+                    <div class="col-md-4 text-center ">
+                    <mat-icon color="primary">account_box</mat-icon>    
+                    </div>
+                    <div class="col-md-8 text-center mt-1">
+                       <span style="font-size: 20px;">45</span> 
+                        <p class="lead">Total Users</p>
+                    
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="col-md-3">
+        <mat-card>
+            <mat-card-content>
+                <div class="row">
+
+                    <div class="col-md-4 text-center ">
+                    <mat-icon color="accent">description</mat-icon>    
+                    </div>
+                    <div class="col-md-8 text-center mt-1">
+                       <span style="font-size: 20px;">415</span> 
+                        <p class="lead"> Applicationns</p>
+                    
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="col-md-3">
+        <mat-card>
+            <mat-card-content>
+                <div class="row">
+
+                    <div class="col-md-4 text-center ">
+                    <mat-icon color="warn">credit_card</mat-icon>    
+                    </div>
+                    <div class="col-md-8 text-center mt-1">
+                       <span style="font-size: 20px;">415</span> 
+                        <p class="lead"> Transactions</p>
+                    
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

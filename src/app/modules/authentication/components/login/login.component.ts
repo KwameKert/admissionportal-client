@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
     switch(authData.role){
 
       case "admin":
-        this.router.navigate(['/dashboard/admin']);
+        this.router.navigate(['/admin/dashboard']);
         break;
 
       case "applicant":
