@@ -1,29 +1,35 @@
-<div class="row" style="height: 100%;">
-    <div class="col-md-8 col-lg-8 ">
-        <img src="../../../../../assets/images/grad2.jpg"  alt=""
-        class="w-100 h-100">
-    </div>
-    <div class="col-md-4 col-lg-4 mt-4">
-        <div class="row offset-md-1  col-md-12 col-lg-12 mt-5">
-            
-                <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
-                    <h1 class="text-center mb-5" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">University</h1>
-                   <div class="form-group">
-                       <div class="form-label">Username</div>
-                       <input type="text" placeholder="Enter username here" class="form-control input-lg" autocomplete="off"  formControlName="username" >
-                   </div>
+<app-preloader *ngIf="isLoading; else elseBlock"></app-preloader>
 
-                   <div class="form-group">
-                    <div class="form-label">Password</div>
-                    <input type="password" placeholder="Enter password here" class="form-control input-lg"  autocomplete="off" formControlName="password">
-                </div>
-                    <div class="">
-                        <button class="btn btn-primary" type="submit"   [disabled]="!loginForm.valid"><span class="px-3">Login</span></button>
-                       
-                    </div>
-                  </form>
-           
+
+<ng-template #elseBlock>
+    <div class="row" style="height: 100%;">
+        <div class="col-md-8 col-lg-8 ">
+            <img src="../../../../../assets/images/grad2.jpg"  alt=""
+            class="w-100 h-100">
         </div>
-      
+        <div class="col-md-4 col-lg-4 mt-4">
+            <div class="row offset-md-1  col-md-12 col-lg-12 mt-5">
+                
+                    <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+                        <h1 class="text-center mb-5" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">University</h1>
+                       <div class="form-group">
+                           <div class="form-label">Username</div>
+                           <input type="text" placeholder="Enter username here" class="form-control input-lg" autocomplete="off"  formControlName="username" >
+                       </div>
+    
+                       <div class="form-group">
+                        <div class="form-label">Password</div>
+                        <input type="password" placeholder="Enter password here" class="form-control input-lg"  autocomplete="off" formControlName="password">
+                    </div>
+                        <div class="">
+                            <button class="btn btn-primary" type="submit"   [disabled]="!loginForm.valid"><span class="px-3">Login</span></button>
+                           
+                        </div>
+                      </form>
+               
+            </div>
+          
+        </div>
     </div>
-</div>
+    
+</ng-template>

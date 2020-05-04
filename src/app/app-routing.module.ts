@@ -11,12 +11,12 @@ const routes: Routes= [
                      .then(m => m.AuthenticationModule)
 },
 
-// {
-//   path:'', 
-//   component: DefaultComponent,
-//   loadChildren: () => import('./modules/student/student.module')
-//                      .then(m => m.StudentModule)
-// },
+{
+  path:'program', 
+  component: DefaultComponent,
+  loadChildren: () => import('./modules/program/program.module')
+                     .then(m => m.ProgramModule)
+},
 //{path: "**", redirectTo: "login"}
 ];
 
