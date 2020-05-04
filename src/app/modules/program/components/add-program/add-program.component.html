@@ -1,1 +1,47 @@
-<p>add-program works!</p>
+
+        <div class="row mt-3">
+            <div class="col-md-12 text-center ">
+                <form [formGroup]="programForm" (ngSubmit)="saveProgram()">
+                    <mat-form-field appearance="outline" style="width:500px"  >
+                        <mat-label>Full Name</mat-label>
+                        <input matInput placeholder="Telecommunication Engineering"  formControlName="name" >
+                        <mat-error *ngIf="programForm.get('name').invalid"> Invalid input </mat-error>
+                      </mat-form-field>
+                    <mat-form-field appearance="outline" style="width:500px"  >
+                        <mat-label>Description </mat-label>
+                        <textarea matInput  formControlName="description"></textarea>
+                        <mat-error *ngIf="programForm.get('description').invalid"> Invalid input </mat-error>
+                      </mat-form-field>
+
+                      <mat-form-field appearance="outline" style="width:500px"  >
+                        <mat-label>Price</mat-label>
+                        <input matInput placeholder="2012 "  formControlName="price" >
+                        <mat-error *ngIf="programForm.get('price').invalid"> Invalid input </mat-error>
+                      </mat-form-field>
+
+                     
+                  
+                    <mat-form-field appearance="outline" style="width:500px"  >
+                        <mat-label>End Date</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="endDate">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <mat-error *ngIf="programForm.get('endDate').invalid"> Invalid input </mat-error>
+                      </mat-form-field>
+
+                      <mat-form-field appearance="outline" style="width:500px">
+                        <mat-label>Status</mat-label>
+                        <mat-select  formControlName="status">
+                          <mat-option>None</mat-option>
+                          <mat-option value="active" >Active</mat-option>
+                          <mat-option value="inactive" >Inactive</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+
+                      <button mat-raised-button color="primary" class="float-right mb-1" type="submit"  [disabled]="!programForm.valid"> <mat-icon>done</mat-icon> Save User</button>
+        
+                </form>
+            </div>
+        </div>
+
+  

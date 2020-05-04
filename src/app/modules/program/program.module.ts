@@ -5,6 +5,8 @@ import { ProgramRoutingModule } from './program-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { AddProgramComponent } from './components/add-program/add-program.component';
 import { EditProgramComponent } from './components/edit-program/edit-program.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 
@@ -13,7 +15,9 @@ import { EditProgramComponent } from './components/edit-program/edit-program.com
   imports: [
     CommonModule,
     ProgramRoutingModule,
-    SharedModule
+    SharedModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ]
 })
 export class ProgramModule { }

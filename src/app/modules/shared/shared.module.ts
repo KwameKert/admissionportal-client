@@ -70,7 +70,8 @@ import { PreloaderComponent } from './components/preloader/preloader.component';
     DeleteItemComponent,
     NgxSkeletonLoaderModule,
     ExcerptFilter,
-    PreloaderComponent
+    PreloaderComponent,
+    ExcerptFilter
   ],
   entryComponents: [DeleteItemComponent]
 })

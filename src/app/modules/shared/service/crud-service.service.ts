@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import {environment} from '../../../../environments/environment';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,30 +11,30 @@ export class CrudService{
   constructor(private _httpClient: HttpClient) { }
 
 
-  deleteItem({id, module}){
+  deleteItem({id, module}): Observable<any>{
     return this._httpClient.delete(`${this._baseUrl}/${module}/${id}`);
    }
 
 
    
-  public fetchItem({id, module}){
+  public fetchItem({id, module}): Observable<any>{
     return this._httpClient.get(`${this._baseUrl}/${module}/${id}`)
   }
 
 
-  public fetchAll(module: any){
+  public fetchAll(module: any): Observable<any>{
     return this._httpClient.get(`${this._baseUrl}/${module}/`)
   }
 
 
 
 
-  public addItem(data, module){
+  public addItem(data, module): Observable<any>{
     return this._httpClient.post(`${this._baseUrl}/${module}/`, data);
   }
 
 
-  public updateItem({data, module}){
+  public updateItem({data, module}): Observable<any>{
     return this._httpClient.put(`${this._baseUrl}/${module}/`, data);
   }
 
