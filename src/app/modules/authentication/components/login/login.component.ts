@@ -10,13 +10,12 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup ;
-
+  isLoading: boolean = false;
   constructor(private router: Router, private _fb: FormBuilder) { }
 
   
 
   ngOnInit() {
-
     this.loginForm = this._fb.group({
       username: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required)
@@ -24,7 +23,7 @@ export class LoginComponent implements OnInit {
   }
 
   loginUser(){
-    
+    this.isLoading = true;
     this.router.navigate(['dashboard']);
   }
 

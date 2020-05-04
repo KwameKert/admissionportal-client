@@ -18,9 +18,10 @@ import { DeleteItemComponent } from './components/delete-item/delete-item.compon
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { ExcerptFilter } from './excerpts.pipe';
 import { MatSelectModule } from '@angular/material/select';
+import { PreloaderComponent } from './components/preloader/preloader.component';
 
 @NgModule({
-  declarations: [DeleteItemComponent, ExcerptFilter],
+  declarations: [DeleteItemComponent, ExcerptFilter, PreloaderComponent],
   imports: [
     CommonModule,
     MatTableModule,
@@ -72,7 +73,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatDialogModule,
     DeleteItemComponent,
     NgxSkeletonLoaderModule,
-    ExcerptFilter
+    ExcerptFilter,
+    PreloaderComponent
   ],
   entryComponents: [DeleteItemComponent]
 })
