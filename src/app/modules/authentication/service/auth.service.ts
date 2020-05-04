@@ -20,7 +20,7 @@ export class AuthService {
  }
 
  setUserDetails(authData: any){
-   localStorage.setItem("propToken", authData.token);
+   localStorage.setItem("uniToken", authData.token);
    localStorage.setItem("username", authData.username);
    localStorage.setItem("userId", authData.userId)
    localStorage.setItem("role", authData.role);
