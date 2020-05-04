@@ -1,7 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CrudService } from 'src/app/modules/shared/service/crud-service.service';
 import { MatPaginator } from '@angular/material/paginator';
-
+import { DeleteItemComponent } from 'src/app/modules/shared/components/delete-item/delete-item.component';
+import {  MatSnackBar,  } from '@angular/material/snack-bar';
+import {  MatTableDataSource,  } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-list-program',
@@ -34,7 +38,7 @@ export class ListProgramComponent implements OnInit {
     {def: 'actions', slideShow: false}
   ];
 
-  constructor(private _crudService: CrudService) { }
+  constructor(private _crudService: CrudService, public dialog: MatDialog, private _snackBar: MatSnackBar, private _toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.getCollumnDefinitions();
@@ -86,5 +90,35 @@ export class ListProgramComponent implements OnInit {
   reloadList(event: any){
     this.loadAllPrograms();
   }
+
+  // deleteDepartment(id: Number){
+  //   let data = {
+  //     module: 'department',
+  //     id
+  //   }
+  //   const dialogRef = this.dialog.open(DeleteItemComponent, {
+  //     width: '550px',
+  //     height: '180px',
+  //     data: data
+  //   });
+
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     if(result.event){
+  //       this._snackBar.open("Department Deleted 🙂  ", "", {
+  //         duration: 2000,
+  //       });
+  //       if(result.data != null){
+  //         this.dataSource = new MatTableDataSource(result.data);
+  //         this.dataSource.paginator = this.paginator;
+  //       }
+
+  //     }else{
+
+  //       this._toastr.error("Oops an error. 🥺","",{
+  //         timeOut:2000
+  //       })
+  //     }
+  //   });
+  // }
 
 }
