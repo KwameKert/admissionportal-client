@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators, FormGroup, FormBuilder} from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../service/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +13,7 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup ;
   isLoading: boolean = false;
-  constructor(private router: Router, private _fb: FormBuilder) { }
+  constructor(private router: Router, private _fb: FormBuilder, private _authService: AuthService,  private _toastr: ToastrService) { }
 
   
 
@@ -24,7 +26,45 @@ export class LoginComponent implements OnInit {
 
   loginUser(){
     this.isLoading = true;
-    this.router.navigate(['dashboard']);
+    this._authService.loginUser(this.loginForm.value).subscribe(data=>{
+
+      let authData = {
+        userId: data.user.id,
+        token: data.token,
+        username: data.user.username,
+        role: data.user.role
+    }
+    
+    this._authService.setUserDetails(authData);
+
+    this._toastr.success("Welcome to University 🙂","",{
+      timeOut:2000
+    })
+   
+    console.log(authData)
+    
+    switch(authData.role){
+
+      case "admin":
+        this.router.navigate(['/admin/list_program']);
+        break;
+
+      case "applicant":
+        this.router.navigate(['/applicant/list_program']);
+        break;
+    }
+
+    }, error=> {
+      console.error(error)
+    
+      this._toastr.info("Invalid credentials. 🥺","",{
+        timeOut:2000
+      })
+    
+    })
+
+    this.isLoading = false;
+    
   }
 
 }

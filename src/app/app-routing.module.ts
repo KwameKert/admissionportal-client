@@ -3,6 +3,8 @@ import { RouterModule, Routes ,PreloadAllModules} from '@angular/router';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import {DefaultComponent} from './layouts/default/default.component';
 import { AuthGuard } from './auth.guard';
+import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { ApplicantLayoutComponent } from './layouts/applicant-layout/applicant-layout.component';
 
 const routes: Routes= [
 {
@@ -13,12 +15,20 @@ const routes: Routes= [
 },
 
 {
-  path:'program', 
-  component: DefaultComponent,
+  path:'admin', 
+  component: AdminLayoutComponent,
   loadChildren: () => import('./modules/program/program.module')
                      .then(m => m.ProgramModule),
   canActivate:[AuthGuard]  
 },
+
+// {
+//   path:'applicant', 
+//   component: ApplicantLayoutComponent,
+//   loadChildren: () => import('./modules/program/program.module')
+//                      .then(m => m.ProgramModule),
+//   canActivate:[AuthGuard]  
+// },
 //{path: "**", redirectTo: "login"}
 ];
 

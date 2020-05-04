@@ -16,7 +16,7 @@ export class AuthService {
   private loggedInStatus = localStorage.getItem("status");
 
  loginUser(data: any ): Observable<any>{
-   return this._httpClient.post(`${this._baseUrl}/users/login/`, data);
+   return this._httpClient.post(`http://localhost:3000/users/login`, data);
  }
 
  setUserDetails(authData: any){

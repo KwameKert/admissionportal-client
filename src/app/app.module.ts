@@ -17,6 +17,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { DatePipe } from '@angular/common';
 import { AuthInterceptor, TokenInterceptor} from './interceptors/index';
+import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { ApplicantLayoutComponent } from './layouts/applicant-layout/applicant-layout.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,8 @@ import { AuthInterceptor, TokenInterceptor} from './interceptors/index';
     SidebarComponent,
     FooterComponent,
     DefaultComponent,
+    AdminLayoutComponent,
+    ApplicantLayoutComponent,
 
   ],
   imports: [
@@ -41,7 +46,7 @@ import { AuthInterceptor, TokenInterceptor} from './interceptors/index';
     MatListModule,
     HttpClientModule,
     MatSidenavModule,  
-  
+    ToastrModule.forRoot(), 
     
   ],
   providers: [
