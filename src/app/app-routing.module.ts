@@ -22,6 +22,7 @@ const routes: Routes= [
   canActivate:[AuthGuard]  
 },
 
+
 // {
 //   path:'applicant', 
 //   component: ApplicantLayoutComponent,

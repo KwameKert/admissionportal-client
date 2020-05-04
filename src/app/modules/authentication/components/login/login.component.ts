@@ -46,11 +46,11 @@ export class LoginComponent implements OnInit {
     switch(authData.role){
 
       case "admin":
-        this.router.navigate(['/admin/list_program']);
+        this.router.navigate(['/dashboard/admin']);
         break;
 
       case "applicant":
-        this.router.navigate(['/applicant/list_program']);
+        this.router.navigate(['/dashboard/applicant']);
         break;
     }
 
