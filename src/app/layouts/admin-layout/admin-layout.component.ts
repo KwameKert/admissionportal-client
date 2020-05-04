@@ -10,7 +10,7 @@ export class AdminLayoutComponent implements OnInit {
 
   links: Array<object> = [
     {name: 'dashboard',url: '/admin/dashboard', icon: 'home'},
-    {name: 'program',url: '/program/list_all_program', icon: 'extension'},
+    {name: 'program',url: '/admin/list_program', icon: 'extension'},
   ]
     
 
