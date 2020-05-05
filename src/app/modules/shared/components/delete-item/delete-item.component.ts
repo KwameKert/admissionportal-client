@@ -23,10 +23,10 @@ export class DeleteItemComponent implements OnInit {
 
   delete(){
     this._crudService.deleteItem(this.data).subscribe(data=>{
-      let response: any = data;
+    
 
       let evt = {
-        data: response.data,
+        data: data.data,
         event: true
 
       }

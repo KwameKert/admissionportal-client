@@ -108,6 +108,7 @@ export class ListProgramComponent implements OnInit {
           duration: 2000,
         });
         if(result.data != null){
+       
           this.dataSource = new MatTableDataSource(result.data);
           this.dataSource.paginator = this.paginator;
         }
