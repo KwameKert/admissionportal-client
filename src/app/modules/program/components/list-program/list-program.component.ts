@@ -91,34 +91,36 @@ export class ListProgramComponent implements OnInit {
     this.loadAllPrograms();
   }
 
-  // deleteDepartment(id: Number){
-  //   let data = {
-  //     module: 'department',
-  //     id
-  //   }
-  //   const dialogRef = this.dialog.open(DeleteItemComponent, {
-  //     width: '550px',
-  //     height: '180px',
-  //     data: data
-  //   });
+  deleteProgram(id: Number){
+    let data = {
+      module: 'program',
+      id
+    }
+    const dialogRef = this.dialog.open(DeleteItemComponent, {
+      width: '550px',
+      height: '180px',
+      data: data
+    });
 
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     if(result.event){
-  //       this._snackBar.open("Department Deleted 🙂  ", "", {
-  //         duration: 2000,
-  //       });
-  //       if(result.data != null){
-  //         this.dataSource = new MatTableDataSource(result.data);
-  //         this.dataSource.paginator = this.paginator;
-  //       }
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.event){
+        this._snackBar.open("Department Deleted 🙂  ", "", {
+          duration: 2000,
+        });
+        if(result.data != null){
+          this.dataSource = new MatTableDataSource(result.data);
+          this.dataSource.paginator = this.paginator;
+        }
 
-  //     }else{
+      }else{
 
-  //       this._toastr.error("Oops an error. 🥺","",{
-  //         timeOut:2000
-  //       })
-  //     }
-  //   });
-  // }
+        this._toastr.error("Oops an error. 🥺","",{
+          timeOut:2000
+        })
+      }
+    });
+
+
+  }
 
 }
