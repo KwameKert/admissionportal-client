@@ -19,6 +19,10 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { ExcerptFilter } from './excerpts.pipe';
 import { MatSelectModule } from '@angular/material/select';
 import { PreloaderComponent } from './components/preloader/preloader.component';
+import {MatListModule} from '@angular/material/list';
+
+
+
 
 @NgModule({
   declarations: [DeleteItemComponent, ExcerptFilter, PreloaderComponent],
@@ -45,7 +49,8 @@ import { PreloaderComponent } from './components/preloader/preloader.component';
     MatSlideToggleModule,
     MatDialogModule,
     NgxSkeletonLoaderModule,
-    MatMenuModule
+    MatMenuModule,
+    MatListModule
     
   ],
   providers: [  
@@ -73,7 +78,8 @@ import { PreloaderComponent } from './components/preloader/preloader.component';
     ExcerptFilter,
     PreloaderComponent,
     ExcerptFilter,
-    MatMenuModule
+    MatMenuModule,
+    MatListModule
   ],
   entryComponents: [DeleteItemComponent]
 })

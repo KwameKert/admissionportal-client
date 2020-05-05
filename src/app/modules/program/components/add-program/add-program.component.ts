@@ -23,6 +23,8 @@ export class AddProgramComponent implements OnInit {
       description: new FormControl('', Validators.required),
       price: new FormControl('', Validators.required),
       endDate: new FormControl('', Validators.required),
+      faculty:  new FormControl('', Validators.required),
+      length:  new FormControl('', Validators.required),
       status: new FormControl('', Validators.required)
     })
   }

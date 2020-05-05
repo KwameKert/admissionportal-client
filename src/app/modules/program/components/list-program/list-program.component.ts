@@ -6,6 +6,7 @@ import {  MatSnackBar,  } from '@angular/material/snack-bar';
 import {  MatTableDataSource,  } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-program',
@@ -38,7 +39,7 @@ export class ListProgramComponent implements OnInit {
     {def: 'actions', slideShow: false}
   ];
 
-  constructor(private _crudService: CrudService, public dialog: MatDialog, private _snackBar: MatSnackBar, private _toastr: ToastrService) { }
+  constructor(private _crudService: CrudService, public dialog: MatDialog, private _snackBar: MatSnackBar, private _toastr: ToastrService, private _router: Router) { }
 
   ngOnInit(): void {
     this.getCollumnDefinitions();
@@ -123,6 +124,11 @@ export class ListProgramComponent implements OnInit {
     });
 
 
+  }
+
+
+  viewProgram(id: any){
+    this._router.navigate([`/admin/view_program/${id}`])
   }
 
 }

@@ -19,6 +19,18 @@
                         <mat-error *ngIf="programForm.get('price').invalid"> Invalid input </mat-error>
                       </mat-form-field>
 
+                      <mat-form-field appearance="outline" style="width:500px"  >
+                        <mat-label>Duration</mat-label>
+                        <input matInput placeholder="2012 "  formControlName="length" >
+                        <mat-error *ngIf="programForm.get('length').invalid"> Invalid input </mat-error>
+                      </mat-form-field>
+
+                      <mat-form-field appearance="outline" style="width:500px"  >
+                        <mat-label>Faculty</mat-label>
+                        <input matInput placeholder="2012 "  formControlName="faculty" >
+                        <mat-error *ngIf="programForm.get('faculty').invalid"> Invalid input </mat-error>
+                      </mat-form-field>
+
                      
                   
                     <mat-form-field appearance="outline" style="width:500px"  >
