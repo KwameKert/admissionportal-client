@@ -104,10 +104,11 @@ export class ListProgramComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result.event){
-        this._snackBar.open("Department Deleted 🙂  ", "", {
-          duration: 2000,
-        });
+      
         if(result.data != null){
+          this._snackBar.open("Department Deleted 🙂  ", "", {
+            duration: 2000,
+          });
        
           this.dataSource = new MatTableDataSource(result.data);
           this.dataSource.paginator = this.paginator;

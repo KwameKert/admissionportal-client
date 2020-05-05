@@ -17,7 +17,7 @@ export class DeleteItemComponent implements OnInit {
   }
 
   close(){
-    this.dialogRef.close();
+    this.dialogRef.close({event:true, data: null});
   }
 
 

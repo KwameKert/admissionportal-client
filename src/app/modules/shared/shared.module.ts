@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {MatTableModule} from '@angular/material/table';
-
+import {MatMenuModule} from '@angular/material/menu';
 import {MatInputModule} from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -45,6 +45,7 @@ import { PreloaderComponent } from './components/preloader/preloader.component';
     MatSlideToggleModule,
     MatDialogModule,
     NgxSkeletonLoaderModule,
+    MatMenuModule
     
   ],
   providers: [  
@@ -71,7 +72,8 @@ import { PreloaderComponent } from './components/preloader/preloader.component';
     NgxSkeletonLoaderModule,
     ExcerptFilter,
     PreloaderComponent,
-    ExcerptFilter
+    ExcerptFilter,
+    MatMenuModule
   ],
   entryComponents: [DeleteItemComponent]
 })
