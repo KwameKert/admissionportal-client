@@ -37,9 +37,6 @@ export class LoginComponent implements OnInit {
     
     this._authService.setUserDetails(authData);
 
-    this._toastr.success("Welcome to University 🙂","",{
-      timeOut:2000
-    })
    
     console.log(authData)
     
@@ -64,6 +61,10 @@ export class LoginComponent implements OnInit {
     })
 
     this.isLoading = false;
+
+    this._toastr.success("Welcome to University 🙂","",{
+      timeOut:2000
+    })
     
   }
 
