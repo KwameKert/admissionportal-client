@@ -73,7 +73,7 @@
                       <mat-icon>visibility</mat-icon>
                       <span>View Program</span>
                     </button>
-                    <button mat-menu-item >
+                    <button mat-menu-item  (click)="editProgram(element._id)">
                       <mat-icon>create</mat-icon>
                       <span>Edit Program</span>
                     </button>
@@ -94,8 +94,8 @@
         </div>
 
         <div [ngClass]="addProgramColumn">
-            <app-add-program (newProgram)="reloadList($event)"></app-add-program>
-         
+            <app-add-program (newProgram)="reloadList($event)" *ngIf="isAdd"></app-add-program>
+            <app-edit-program (programUpdate)="reloadList($event)"  [programId]="programId" *ngIf="isEdit"></app-edit-program>
         </div>
       </div>
   

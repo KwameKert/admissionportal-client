@@ -19,6 +19,9 @@ export class ListProgramComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   
   isLoading: boolean = true;
+  isAdd: boolean = false;
+  isEdit: boolean = false;
+  programId: any ;
   dataSource = new MatTableDataSource<any>();
   slide: boolean = false;
 
@@ -75,7 +78,21 @@ export class ListProgramComponent implements OnInit {
     this.listProgramColumn = 'col-md-6';
     this.addProgramColumn = 'col-md-6';
     this.isAddProgram = true;
+    this.isAdd = true;
+    this.isEdit = false;
   }
+
+  editProgram(id){
+    this.slide = true;
+    this.getCollumnDefinitions();
+    this.listProgramColumn = 'col-md-6';
+    this.addProgramColumn = 'col-md-6';
+    this.isAddProgram = true;
+    this.isAdd = false;
+    this.isEdit = true;
+    this.programId = id;
+  }
+
 
   listProgram(){
 
