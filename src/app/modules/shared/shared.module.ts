@@ -20,6 +20,7 @@ import { ExcerptFilter } from './excerpts.pipe';
 import { MatSelectModule } from '@angular/material/select';
 import { PreloaderComponent } from './components/preloader/preloader.component';
 import {MatListModule} from '@angular/material/list';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 
@@ -32,13 +33,10 @@ import {MatListModule} from '@angular/material/list';
     MatInputModule,
     MatDatepickerModule,
     MatDatepickerModule,
-   // MatNativeDateModule ,
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
     MatIconModule,
-    // MatStepperModule,
-    // MatCheckboxModule,
     MatButtonModule,
     MatPaginatorModule,
     MatSnackBarModule,
@@ -50,7 +48,8 @@ import {MatListModule} from '@angular/material/list';
     MatDialogModule,
     NgxSkeletonLoaderModule,
     MatMenuModule,
-    MatListModule
+    MatListModule,
+    MatFormFieldModule
     
   ],
   providers: [  
@@ -79,7 +78,8 @@ import {MatListModule} from '@angular/material/list';
     PreloaderComponent,
     ExcerptFilter,
     MatMenuModule,
-    MatListModule
+    MatListModule,
+    MatFormFieldModule
   ],
   entryComponents: [DeleteItemComponent]
 })

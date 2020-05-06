@@ -12,6 +12,12 @@ import { ChartsModule } from 'ng2-charts';
     CommonModule,
     SharedModule,
     ChartsModule
+  ],
+  exports: [
+    SharedModule,
+    ChartsModule,
+    AdminDashboardComponent, 
+    ApplicantDashboardComponent
   ]
 })
 export class DashboardModule { }
