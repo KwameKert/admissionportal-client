@@ -29,7 +29,8 @@ import { ListActiveProgramComponent } from './components/list-active-program/lis
     ListProgramComponent, 
     AddProgramComponent,
     EditProgramComponent, 
-    ViewProgramComponent
+    ViewProgramComponent,
+    ListActiveProgramComponent
   ]
 })
 export class ProgramModule { }

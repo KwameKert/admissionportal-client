@@ -1,0 +1,25 @@
+img {
+    height: 150px;
+    width: 200px
+}
+
+.original-price {
+    text-decoration: line-through;
+
+}
+
+.discount-price {
+
+    font-weight: 700;
+}
+
+.badge-success {
+    color: #fff;
+    background-color: #007bff;
+    padding: 7px;
+}
+
+a{
+    color:inherit;
+    text-decoration: none;
+}

@@ -11,11 +11,45 @@
   </div>
 
   <ng-template #elseBlock>
-      <mat-card>
-          <mat-card-content>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magni mollitia ipsa molestiae tempora sint laborum explicabo et nihil dolorum cumque nostrum quia nulla quis iste tenetur esse sunt, officia iure.
-          </mat-card-content>
-      </mat-card>
+
+    <div class="row justify-content-center">
+        <div class="col-10">
+        
+                <mat-card class="mb-4" *ngFor="let program of obs | async">
+                    <mat-card-content>
+                        <a style="text-decoration: none" href="javascript:void(0)" (click)="viewProgram(program._id)">
+                            <div class="row" >
+                            
+                                <div class="col-3">
+    
+                                    <img [src]="program.image_url"     *ngIf="program.image_url"/>
+                                    
+                                    <img src="assets/images/admin.png"    *ngIf="!program.image_url"/>
+                                </div>
+    
+                                <div class="col-7">
+                                    <h5>{{program.name}}</h5>
+                                    {{program.description}}
+                                    <br>
+                                    <span href="#" class="badge badge-success">Open</span>
+                                </div>
+                                <div class="col-2">
+                                    <span class="discount-price">₵ {{ program.price - program.price*0.2 }}</span> <br>
+                                    <span class="original-price">₵ {{program.price}}</span>
+                                </div>
+                            </div>
+                        </a>
+                      
+                     
+                    </mat-card-content>
+                </mat-card>
+        
+        </div>
+        
+    </div>
+  
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+      
   </ng-template>
 
 
