@@ -25,7 +25,9 @@ export class LoginComponent implements OnInit {
   }
 
   loginUser(){
+
     this.isLoading = true;
+    console.log("OM ere")
     this._authService.loginUser(this.loginForm.value).subscribe(data=>{
 
       let authData = {
@@ -37,9 +39,6 @@ export class LoginComponent implements OnInit {
     
     this._authService.setUserDetails(authData);
 
-   
-    console.log(authData)
-    
     switch(authData.role){
 
       case "admin":
@@ -50,21 +49,22 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/applicant/show_programs']);
         break;
     }
-
-    }, error=> {
-      console.error(error)
-    
-      this._toastr.info("Invalid credentials. 🥺","",{
-        timeOut:2000
-      })
-    
-    })
-
-    this.isLoading = false;
-
     this._toastr.success("Welcome to University 🙂","",{
       timeOut:2000
     })
+
+    }, error => {
+  
+      console.error("error ",error)
+  
+    
+    },);
+
+    this.isLoading = false;
+  
+  
+
+  
     
   }
 

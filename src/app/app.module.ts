@@ -14,6 +14,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { DatePipe } from '@angular/common';
 import { AuthInterceptor, TokenInterceptor} from './interceptors/index';
@@ -46,6 +47,7 @@ import { ToastrModule } from 'ngx-toastr';
     MatListModule,
     HttpClientModule,
     MatSidenavModule,  
+    NgxUiLoaderModule,
     ToastrModule.forRoot(), 
     
   ],

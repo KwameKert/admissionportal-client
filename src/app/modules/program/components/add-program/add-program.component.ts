@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CrudService } from 'src/app/modules/shared/service/crud-service.service';
 import { ToastrService } from 'ngx-toastr';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-add-program',
@@ -18,10 +19,12 @@ export class AddProgramComponent implements OnInit {
   
   @Output() newProgram: EventEmitter<boolean> = new EventEmitter();
 
-  constructor(private _crudService: CrudService, private _fb: FormBuilder, private _toastr: ToastrService) { }
+  constructor(private _crudService: CrudService,
+     private _fb: FormBuilder, private _toastr: ToastrService,   private ngxService: NgxUiLoaderService) { }
 
   ngOnInit(): void {
 
+    this.ngxService.start();
     this.programForm = this._fb.group({
       name: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
@@ -36,14 +39,7 @@ export class AddProgramComponent implements OnInit {
 
   saveProgram(){
 
-    this._crudService.addItem(this.programForm.value,"program").subscribe(data=>{
-
-      this._toastr.success(data.message, "Success  😊", {  timeOut:2000});
-      this.newProgram.emit(true)
-    }, error=> {
-    this._toastr.info("Ooops", "Unexpected Error  🥺", {  timeOut:5000});
-      console.error(error)
-    })
+  
   }
 
 
@@ -94,15 +90,17 @@ export class AddProgramComponent implements OnInit {
 
   persitData(){
 
-    // this._crudService.addItem(this.leaderForm.value, "leader")
-    // .subscribe(data => {
-    //   this.responseData = data;
-    //   this.leaderForm.reset();
-    //   this.previewUrl = null;
-    // }, error => {
+    this._crudService.addItem(this.programForm.value,"program").subscribe(data=>{
 
-    // console.warn(error)
-    // })
+      this._toastr.success(data.message, "Success  😊", {  timeOut:2000});
+      this.programForm.reset();
+      this.newProgram.emit(true)
+    }, error=> {
+    this._toastr.info("Ooops", "Unexpected Error  🥺", {  timeOut:5000});
+      console.error(error)
+    })
+
+   
   }
 
 
