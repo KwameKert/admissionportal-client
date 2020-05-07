@@ -3,6 +3,7 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { CrudService } from 'src/app/modules/shared/service/crud-service.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { ImageService } from 'src/app/modules/shared/service/image.service';
 
 @Component({
   selector: 'app-add-program',
@@ -20,11 +21,11 @@ export class AddProgramComponent implements OnInit {
   @Output() newProgram: EventEmitter<boolean> = new EventEmitter();
 
   constructor(private _crudService: CrudService,
-     private _fb: FormBuilder, private _toastr: ToastrService,   private ngxService: NgxUiLoaderService) { }
+     private _fb: FormBuilder, private _toastr: ToastrService,   private ngxService: NgxUiLoaderService, private _imageService: ImageService) { }
 
   ngOnInit(): void {
 
-    this.ngxService.start();
+    
     this.programForm = this._fb.group({
       name: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
@@ -32,12 +33,28 @@ export class AddProgramComponent implements OnInit {
       endDate: new FormControl('', Validators.required),
       faculty:  new FormControl('', Validators.required),
       length:  new FormControl('', Validators.required),
-      status: new FormControl('', Validators.required)
+      status: new FormControl('', Validators.required),
+      image_url: ''
     })
   }
 
 
-  saveProgram(){
+  async saveProgram(){
+    this.ngxService.start();
+
+    if(this.formData){
+      await this.uploadImage().then(()=>{
+        this.persitData();
+      }).catch(()=>{
+        this.persitData()
+      })
+    }else{
+      this.persitData()
+    }
+    
+    
+
+    this.ngxService.stop();
 
   
   }
@@ -66,25 +83,25 @@ export class AddProgramComponent implements OnInit {
 
 
 
-  // uploadImage(){
+  uploadImage(){
 
-  //   return new Promise((resolve,reject)=>{
-  //     this._imageService.uploadImage(this.formData).subscribe(data =>{
-  //       let response: any = data
-  //       this.leaderForm.patchValue({
-  //         image_url: response.data.link
-  //       });
-  //       resolve(true)
-  //     }, error=>{
-  //       console.warn(error)
-  //       reject(false)
-  //     })
+    return new Promise((resolve,reject)=>{
+      this._imageService.uploadImage(this.formData).subscribe(data =>{
+        this.programForm.patchValue({
+          image_url: data.data.link
+          
+        })
+        resolve(true)
+      }, error=>{
+        console.warn(error)
+        reject(false)
+      })
 
 
-  //   })
+    })
   
 
-  // }
+  }
 
 
 

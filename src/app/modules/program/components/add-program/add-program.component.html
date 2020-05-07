@@ -50,9 +50,12 @@
                         </mat-select>
                       </mat-form-field>
 
-                      <mat-form-field>
-                        <input matInput id="customFile" name="filename" (change)="fileProgress($event)" #imageHolder placeholder="Description">
-                      </mat-form-field>
+                     
+                      <div class="custom-file mb-3">
+                        <input type="file" class="custom-file-input" id="customFile" name="filename" (change)="fileProgress($event)" #imageHolder >
+                        <label class="custom-file-label" for="customFile">Program Image</label>
+                      </div>
+
 
 
                       <button mat-raised-button color="primary" class="float-right mb-1" type="submit"  [disabled]="!programForm.valid"> <mat-icon>done</mat-icon> Save User</button>
