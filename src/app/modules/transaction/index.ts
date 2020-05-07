@@ -1,0 +1,1 @@
+export * from './components/make-deposit/make-deposit.component';

@@ -15,7 +15,8 @@
 
             <div class="col-5">
                 <mat-list role="list" >
-                    <button mat-raised-button color="primary" class="float-right" *ngIf="isApplicant"><mat-icon> email</mat-icon> Apply</button>
+                    <button mat-raised-button color="warn"  *ngIf="isApplicant" (click)="makeDeposit(programData._id)"> <mat-icon> email</mat-icon>Apply Program</button>
+                    <!-- <button mat-raised-button   > Apply</button> -->
                     <mat-list-item role="listitem">
                         <mat-icon>schedule</mat-icon> Length :  {{programData.length}} 
                     </mat-list-item>

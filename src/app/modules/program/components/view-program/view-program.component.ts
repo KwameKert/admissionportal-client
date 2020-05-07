@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute} from '@angular/router';
+import { ActivatedRoute, Router} from '@angular/router';
 import { CrudService } from 'src/app/modules/shared/service/crud-service.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class ViewProgramComponent implements OnInit {
 
   programDetail: any;
 
-  constructor(private _route: ActivatedRoute, private _crudService: CrudService) { }
+  constructor(private _route: ActivatedRoute, private _crudService: CrudService, private _router: Router) { }
 
   ngOnInit(): void {
 
@@ -34,6 +34,10 @@ export class ViewProgramComponent implements OnInit {
     }, error=>{
       console.error(error)
     })
+  }
+
+  makeDeposit(id){
+    this._router.navigate([`/applicant/make_deposit/${id}`])
   }
 
 }
