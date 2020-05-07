@@ -10,6 +10,7 @@ import { CrudService } from 'src/app/modules/shared/service/crud-service.service
 export class ViewProgramComponent implements OnInit {
 
   programId: any ;
+  isApplicant: boolean;
   programData: any;
 
   programDetail: any;
@@ -17,6 +18,8 @@ export class ViewProgramComponent implements OnInit {
   constructor(private _route: ActivatedRoute, private _crudService: CrudService) { }
 
   ngOnInit(): void {
+
+    localStorage.getItem("role") == 'applicant' ? this.isApplicant =true : this.isApplicant = false;
 
     this.programId = this._route.snapshot.paramMap.get('id');
     this.getProgram();
@@ -27,7 +30,7 @@ export class ViewProgramComponent implements OnInit {
     this._crudService.fetchItem({id: this.programId, module: 'program'}).subscribe(result=>{
 
       this.programData = result.data
-      console.log(this.programData, this.programDetail)
+     
     }, error=>{
       console.error(error)
     })
