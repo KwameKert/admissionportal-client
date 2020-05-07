@@ -21,6 +21,13 @@ const routes: Routes= [
                      .then(m => m.AdminModule),
   canActivate:[AuthGuard]  
 },
+{
+  path:'applicant', 
+  component: ApplicantLayoutComponent,
+  loadChildren: () => import('./modules/applicant/applicant.module')
+                     .then(m => m.ApplicantModule),
+  canActivate:[AuthGuard]  
+},
 
 
 // {

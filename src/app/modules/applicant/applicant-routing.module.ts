@@ -1,12 +1,19 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { RouterModule, Routes } from '@angular/router';
+import {
+  ListActiveProgramComponent
+} from '../program/index';
 
 
+const routes: Routes = [
+
+    {path: 'show_programs', component: ListActiveProgramComponent}
+
+]
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule
-  ]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
 export class ApplicantRoutingModule { }

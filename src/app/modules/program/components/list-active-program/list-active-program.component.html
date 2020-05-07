@@ -1,1 +1,21 @@
-<p>list-active-program works!</p>
+<div *ngIf="isLoading; else elseBlock" >
+    <ngx-skeleton-loader
+    count="5"
+    [theme]="{
+      width: '90%',
+      'border-radius': '0',
+      height: '15px',
+      'margin-bottom': '10px'
+    }"
+  ></ngx-skeleton-loader>
+  </div>
+
+  <ng-template #elseBlock>
+      <mat-card>
+          <mat-card-content>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magni mollitia ipsa molestiae tempora sint laborum explicabo et nihil dolorum cumque nostrum quia nulla quis iste tenetur esse sunt, officia iure.
+          </mat-card-content>
+      </mat-card>
+  </ng-template>
+
+

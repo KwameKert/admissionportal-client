@@ -11,6 +11,10 @@ import { ToastrService } from 'ngx-toastr';
 export class AddProgramComponent implements OnInit {
 
   programForm: FormGroup;
+
+  fileData: File = null;
+  previewUrl:any = null;
+  formData = new FormData();
   
   @Output() newProgram: EventEmitter<boolean> = new EventEmitter();
 
@@ -41,6 +45,86 @@ export class AddProgramComponent implements OnInit {
       console.error(error)
     })
   }
+
+
+  fileProgress(fileInput: any) {
+    this.fileData = <File>fileInput.target.files[0];
+    this.formData.append('image', this.fileData, this.fileData.name);
+    this.preview();
+  }
+
+
+  preview() {
+    // Show preview 
+    var mimeType = this.fileData.type;
+    if (mimeType.match(/image\/*/) == null) {
+      return;
+    }
+    
+    var reader = new FileReader();      
+    reader.readAsDataURL(this.fileData); 
+    reader.onload = (_event) => { 
+      this.previewUrl = reader.result; 
+    }
+    }
+
+
+
+  // uploadImage(){
+
+  //   return new Promise((resolve,reject)=>{
+  //     this._imageService.uploadImage(this.formData).subscribe(data =>{
+  //       let response: any = data
+  //       this.leaderForm.patchValue({
+  //         image_url: response.data.link
+  //       });
+  //       resolve(true)
+  //     }, error=>{
+  //       console.warn(error)
+  //       reject(false)
+  //     })
+
+
+  //   })
+  
+
+  // }
+
+
+
+  persitData(){
+
+    // this._crudService.addItem(this.leaderForm.value, "leader")
+    // .subscribe(data => {
+    //   this.responseData = data;
+    //   this.leaderForm.reset();
+    //   this.previewUrl = null;
+    // }, error => {
+
+    // console.warn(error)
+    // })
+  }
+
+
+
+  // saveLeader = async () =>{
+    
+  //   //this.ngxService.start();
+
+  //   if(this.formData){
+  //     await this.uploadImage().then(()=>{
+  //       this.persitData();
+  //     }).catch(()=>{
+  //       this.persitData()
+  //     })
+  //   }else{
+  //     this.persitData()
+  //   }
+    
+    
+  //  // this.ngxService.stop()
+   
+  // }
 
 
 }

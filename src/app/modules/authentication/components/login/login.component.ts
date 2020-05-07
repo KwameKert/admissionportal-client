@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
         break;
 
       case "applicant":
-        this.router.navigate(['/dashboard/applicant']);
+        this.router.navigate(['/applicant/show_programs']);
         break;
     }
 
