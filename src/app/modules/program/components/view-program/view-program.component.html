@@ -6,6 +6,8 @@
     <mat-card-content>
         <div class="row" *ngIf="programData">
             <div class="col-7">
+                <img [src]="programData.image_url"  class="img-thumbnail " height="300px" />
+                <hr>   
                 <h4>About this course</h4>
                 <p>{{ programData.description }}</p>
 

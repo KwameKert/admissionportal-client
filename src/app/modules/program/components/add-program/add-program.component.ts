@@ -122,24 +122,7 @@ export class AddProgramComponent implements OnInit {
 
 
 
-  // saveLeader = async () =>{
-    
-  //   //this.ngxService.start();
-
-  //   if(this.formData){
-  //     await this.uploadImage().then(()=>{
-  //       this.persitData();
-  //     }).catch(()=>{
-  //       this.persitData()
-  //     })
-  //   }else{
-  //     this.persitData()
-  //   }
-    
-    
-  //  // this.ngxService.stop()
-   
-  // }
+ 
 
 
 }

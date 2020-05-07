@@ -27,14 +27,6 @@ export class ViewProgramComponent implements OnInit {
     this._crudService.fetchItem({id: this.programId, module: 'program'}).subscribe(result=>{
 
       this.programData = result.data
-
-      // this.programDetail = [
-      //   {icon: 'schedule', title: 'length' , data: this.programData.length},
-      //   {icon: 'loyalty', title: 'price' , data: this.programData.price},
-      //   {icon: 'domain', title: 'faculty' , data: this.programData.faculty},
-      //   {icon: 'hourglass_full', title: 'deadline' , data: this.programData.endDate | date:''},
-      // ]
-
       console.log(this.programData, this.programDetail)
     }, error=>{
       console.error(error)
