@@ -1,0 +1,28 @@
+<h1 mat-dialog-title> BELOW are the steps to pay by the MTN USSD Method.</h1>
+<div mat-dialog-content>
+  <ol>
+        <li>Dial *170#  </li>
+        <li>Select 2 (Momo Pay & Pay Bill) </li>
+        <li>Select 2(Pay Bill)  </li>
+        <li>Select 5 (General Payment) </li>
+        <li>Enter payment Code (The payment Code is UNI ‘space’ then type your PIN CODE)   
+           Note: With the payment code, type NSS in capitals then type your UNI PIN CODE. Don’t forget to bring one space btn the UNI & PIN CODE. Eg, [UNI KZRGAP8937419].  
+           (Your Name shall be displayed as confirmation). </li>
+           <li>Enter the amount which is GHC {{data.price}}  </li>
+           <li>Use NSS as your reference </li>
+           <li> Enter your mobile money PIN. </li>
+    </ol> 
+
+    <button mat-raised-button color="primary" (click)="makePayment()">Pay</button>
+
+</div>
+<div mat-dialog-actions mat-dialog-actions class="float-right">
+  <button mat-raised-button (click)="onNoClick()" color="warn">No Thanks</button>
+</div>
+
+
+<!-- 
+<h4>
+    </h4>
+
+ -->

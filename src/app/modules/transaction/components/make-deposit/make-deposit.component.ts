@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { CardDetailsComponent } from '../card-details/card-details.component';
+import { MomoComponent } from '../momo/momo.component';
 import { CrudService } from 'src/app/modules/shared/service/crud-service.service';
-import { ToastrService } from 'ngx-toastr';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -11,77 +12,62 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
   styleUrls: ['./make-deposit.component.scss']
 })
 export class MakeDepositComponent implements OnInit {
-  
-  customStripeForm: FormGroup;
-  submitted: boolean;
-  formProcess: boolean;
-  message: string;
 
+  programId: any;
+  program: any;
+  card: boolean ;
+  momo: boolean;
 
-  constructor(private _crudService: CrudService,
-    private _fb: FormBuilder, private _toastr: ToastrService,   private ngxService: NgxUiLoaderService,) { }
-
+  constructor(public dialog: MatDialog, private _crudService: CrudService, private _route: ActivatedRoute){}
   ngOnInit(): void {
-    this.loadStripe();
 
-    this.customStripeForm = this._fb.group({
-        cardNumber:  new FormControl('', [Validators.required, Validators.maxLength(16), Validators.minLength(16)]),
-        expMonth: new FormControl('', Validators.required),
-        expYear:  new FormControl('', Validators.required),
-        cvv: new FormControl('', [Validators.required, Validators.maxLength(4)])
+    this.programId = this._route.snapshot.paramMap.get('id');
+    this.getProgram();
+    //throw new Error("Method not implemented.");
+  }
+
+
+  getProgram() {
+    this._crudService.fetchItem({id: this.programId, module: 'program'}).subscribe(data=>{
+      this.program = data.data;
+    //  console.log(this.program)
+    }, error =>{
+      console.error(error);
     })
   }
 
-  loadStripe() {
-   
-    if(!window.document.getElementById('stripe-custom-form-script')) {
-      var s = window.document.createElement("script");
-      s.id = "stripe-custom-form-script";
-      s.type = "text/javascript";
-      s.src = "https://js.stripe.com/v2/";
-      s.onload = () => {
-        window['Stripe'].setPublishableKey('pk_test_aeUUjYYcx4XNfKVW60pmHTtI');
-      }
-       
-      window.document.body.appendChild(s);
-    }
+
+  cardForm(){
+    const dialogRef = this.dialog.open(CardDetailsComponent, {
+      width: '600px',
+      data: this.program
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    
+    });
   }
 
-  	
-pay(form) {
- 
-  if(!window['Stripe']) {
-    alert('Oops! Stripe did not initialize properly.');
-    return;
+  momoDetails(){
+
+    const dialogRef = this.dialog.open(MomoComponent, {
+      width: '650px',
+      height:'450px',
+      data: this.program
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    
+    });
   }
+
+
+  openDialog(): void {
    
-  this.submitted = true;
- 
-  console.log(this.customStripeForm);
-  if (this.customStripeForm.invalid) {      
-    return;
-  }   
- 
-  this.formProcess = true;
-  console.log("form");
-  console.log(form);
-  if(!window['Stripe']) {
-    alert('Oops! Stripe did not initialize properly.');
-    return;
   }
-  (<any>window).Stripe.card.createToken({
-    number: form.cardNumber,
-    exp_month: form.expMonth,
-    exp_year: form.expYear,
-    cvc: form.cvc
-  }, (status: number, response: any) => {
-    this.submitted = false;
-    this.formProcess = false;
-    if (status === 200) {
-      this.message = `Success! Card token ${response.card.id}.`;
-    } else {
-      this.message = response.error.message;
-    }
-  });
-}
+
+
+
 }

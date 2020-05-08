@@ -1,0 +1,72 @@
+
+<h1 mat-dialog-title>Card Details</h1>
+<hr>
+<div mat-dialog-content class="row ">
+    <form [formGroup]="customStripeForm" (ngSubmit)="pay(customStripeForm.value)">   
+        <p><b>{{ message }}</b></p>
+        <div class="form-group text-center" id="credit_cards">
+          <img src="../assets/images/visa.jpg" id="visa">
+          <img src="../assets/images/mastercard.jpg" id="mastercard">
+      </div>
+        <div >
+          <div class="col-xs-12 col-md-12">
+            <div class="alert alert-primary" role="alert">
+                <b>{{data?.price }}</b> will be deducted from your account 
+                </div>
+              <mat-form-field appearance="outline" style="width:470px"  >
+                  <mat-label>CARD NuMBER </mat-label>
+                  <input matInput  formControlName="cardNumber" />
+                  <mat-icon matSuffix>credit_card</mat-icon>
+                  <mat-error *ngIf="customStripeForm.get('cardNumber').invalid"> Invalid input </mat-error>
+                </mat-form-field>
+    
+                <div class="row">
+                    <div class="col-6">
+                        <mat-form-field appearance="outline" style="width:270px">
+                            <mat-label>EXPIRATION DATE</mat-label>
+                            <mat-select  formControlName="expMonth">
+                              <mat-option>None</mat-option>
+                              <mat-option value="">Select Month</mat-option>
+                              <mat-option value="1">01</mat-option>
+                              <mat-option value="2">02</mat-option>
+                              <mat-option value="3">03</mat-option>
+                              <mat-option value="4">04</mat-option>
+                              <mat-option value="5">05</mat-option>
+                              <mat-option value="6">06</mat-option>
+                              <mat-option value="7">07</mat-option>
+                              <mat-option value="8">08</mat-option>
+                              <mat-option value="9">09</mat-option>
+                              <mat-option value="10">10</mat-option>
+                              <mat-option value="11">11</mat-option>
+                              <mat-option value="12">12</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="customStripeForm.get('expMonth').invalid"> Invalid input </mat-error>
+                          </mat-form-field>
+              
+                    </div>
+                    <div class="col-6">
+
+    
+                        <mat-form-field appearance="outline" style="width:200px"  >
+                            <mat-label>CV CODE </mat-label>
+                            <input matInput  formControlName="cvv" />
+                            <mat-icon matSuffix>https</mat-icon>
+                            <mat-error *ngIf="customStripeForm.get('cvv').invalid"> Invalid input </mat-error>
+                          </mat-form-field>
+                    </div>
+                </div>
+             
+  
+                <button mat-raised-button color="accent" class="btn-lg btn-block" type="submit"  [disabled]="!customStripeForm.valid">Process payment</button>
+          </div>
+        </div>
+       
+    
+    
+    </form>
+</div>
+<div mat-dialog-actions class="float-right">
+  <button mat-raised-button (click)="onNoClick()" color="warn" class="float-right">No Thanks</button>
+</div>
+
+

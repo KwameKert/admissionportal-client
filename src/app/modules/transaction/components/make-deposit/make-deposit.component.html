@@ -2,74 +2,39 @@
     <div class="row">
         <div class="col-md-5">
             <mat-card>
-                <mat-card-content>
-                    program Details
-                </mat-card-content>
+              <mat-card-header>
+                <mat-card-title>
+                  Program Details
+                </mat-card-title>
+              </mat-card-header>
+                <mat-card-content >
+                  <div *ngIf="program">
+                    <p>Program: {{program.name}}</p>
+                    <p>Price: {{program.price}}</p>
+                    <p>Faculty: {{program.faculty}}</p>
+                    <p>Duration: {{program.length}}</p>
+                    <p>Deadline: {{program.endDate | date: "fullDate"}}</p>
+                  </div>
+                  
+                    </mat-card-content>
             </mat-card>
         </div>
       <div class="col-xs-12 col-md-7">            
         <mat-card>
             <mat-card-header>
                 <mat-card-title>
-                    <h4>Card Details</h4> 
+                    <h4>Payment Method</h4> 
                 </mat-card-title>
             </mat-card-header>
-            <mat-card-content class="text-center">
-                <form [formGroup]="customStripeForm" (ngSubmit)="pay(customStripeForm.value)">   
-                      <p><b>{{ message }}</b></p>
-                      <div class="form-group" id="credit_cards">
-                        <img src="../assets/images/visa.jpg" id="visa">
-                        <img src="../assets/images/mastercard.jpg" id="mastercard">
-                    </div>
-                      <div class="row">
-                        <div class="col-xs-12 col-md-12">
-        
-                            <mat-form-field appearance="outline" style="width:500px"  >
-                                <mat-label>CARD NuMBER </mat-label>
-                                <input matInput  formControlName="cardNumber" />
-                                <mat-icon matSuffix>credit_card</mat-icon>
-                                <mat-error *ngIf="customStripeForm.get('cardNumber').invalid"> Invalid input </mat-error>
-                              </mat-form-field>
-        
-                              <mat-form-field appearance="outline" style="width:500px">
-                                <mat-label>EXPIRATION DATE</mat-label>
-                                <mat-select  formControlName="expMonth">
-                                  <mat-option>None</mat-option>
-                                  <mat-option value="">Select Month</mat-option>
-                                  <mat-option value="1">01</mat-option>
-                                  <mat-option value="2">02</mat-option>
-                                  <mat-option value="3">03</mat-option>
-                                  <mat-option value="4">04</mat-option>
-                                  <mat-option value="5">05</mat-option>
-                                  <mat-option value="6">06</mat-option>
-                                  <mat-option value="7">07</mat-option>
-                                  <mat-option value="8">08</mat-option>
-                                  <mat-option value="9">09</mat-option>
-                                  <mat-option value="10">10</mat-option>
-                                  <mat-option value="11">11</mat-option>
-                                  <mat-option value="12">12</mat-option>
-                                </mat-select>
-                                <mat-error *ngIf="customStripeForm.get('expMonth').invalid"> Invalid input </mat-error>
-                              </mat-form-field>
-        
-        
-                              <mat-form-field appearance="outline" style="width:500px"  >
-                                <mat-label>CV CODE </mat-label>
-                                <input matInput  formControlName="cvv" />
-                                <mat-icon matSuffix>https</mat-icon>
-                                <mat-error *ngIf="customStripeForm.get('cvv').invalid"> Invalid input </mat-error>
-                              </mat-form-field>
-        
-                              <button mat-raised-button color="accent" class="btn-lg btn-block" type="submit"  [disabled]="!customStripeForm.valid">Process payment</button>
-                        </div>
-                      </div>
-                     
-              
-                 
-                </form>
+            <mat-card-content >
+               
+              <button mat-raised-button color="primary" class="mr-4" (click)="cardForm()"><mat-icon>credit_card</mat-icon> Card Details </button>
+              <button mat-raised-button color="accent" (click)="momoDetails()"> <mat-icon>stay_current_portrait</mat-icon> Momo Details</button>
+
+
             </mat-card-content>
         
-        <p class="mt-2">Try it out using the test card number 4242 4242 4242 4242, a random three-digit CVC number and any expiration date in the future.</p>
+        <!-- <p class="mt-2">Try it out using the test card number 4242 4242 4242 4242, a random three-digit CVC number and any expiration date in the future.</p> -->
 
 
     </mat-card>
