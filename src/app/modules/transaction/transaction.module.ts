@@ -4,15 +4,16 @@ import { MakeDepositComponent } from './components/make-deposit/make-deposit.com
 import { SharedModule } from '../shared/shared.module';
 import { CardDetailsComponent } from './components/card-details/card-details.component';
 import { MomoComponent } from './components/momo/momo.component';
+import { ReceiptComponent } from './components/receipt/receipt.component';
 
 
 
 @NgModule({
-  declarations: [MakeDepositComponent, CardDetailsComponent, MomoComponent],
+  declarations: [MakeDepositComponent, CardDetailsComponent, MomoComponent, ReceiptComponent],
   imports: [
     CommonModule,
     SharedModule
   ],
-  exports: [MakeDepositComponent,CardDetailsComponent, MomoComponent]
+  exports: [MakeDepositComponent,CardDetailsComponent, MomoComponent,  ReceiptComponent]
 })
 export class TransactionModule { }

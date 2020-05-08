@@ -64,8 +64,12 @@ export class MakeDepositComponent implements OnInit {
   }
 
 
-  openDialog(): void {
-   
+  makePayment(data){
+    this._crudService.addItem(data, "transaction").subscribe(data=>{
+
+    }, error=>{
+      
+    })
   }
 
 
