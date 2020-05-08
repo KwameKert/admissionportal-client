@@ -25,7 +25,7 @@ export class MakeDepositComponent implements OnInit {
     this.loadStripe();
 
     this.customStripeForm = this._fb.group({
-        cardNumber:  new FormControl('', Validators.required),
+        cardNumber:  new FormControl('', [Validators.required, Validators.maxLength(16), Validators.minLength(16)]),
         expMonth: new FormControl('', Validators.required),
         expYear:  new FormControl('', Validators.required),
         cvv: new FormControl('', [Validators.required, Validators.maxLength(4)])
