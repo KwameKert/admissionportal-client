@@ -48,7 +48,7 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     MatSidenavModule,  
     NgxUiLoaderModule,
-    ToastrModule.forRoot(), 
+    ToastrModule.forRoot()
     
   ],
   providers: [

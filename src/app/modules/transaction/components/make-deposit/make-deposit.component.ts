@@ -39,7 +39,7 @@ export class MakeDepositComponent implements OnInit {
 
   cardForm(){
     const dialogRef = this.dialog.open(CardDetailsComponent, {
-      width: '600px',
+      width: '800px',
       data: this.program
     });
 
