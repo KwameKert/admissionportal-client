@@ -48,10 +48,12 @@ export class CardDetailsComponent implements OnInit {
     })
   }
 
+
+  // on keypress 
     
   cardNumberKey(){
   
-    console.log(this.cardNumber)
+   //validate cardnumber with error classes
 
     if ($.payform.validateCardNumber(this.cardNumber) == false) {
       console.log("error")
@@ -62,6 +64,8 @@ export class CardDetailsComponent implements OnInit {
         this.cardNumberField.nativeElement.classList.remove('has-error');
         this.cardNumberField.nativeElement.classList.add('has-success');
     }
+
+    //find card category
 
     if ($.payform.parseCardType(this.cardNumber) == 'visa') {
       
@@ -93,14 +97,31 @@ export class CardDetailsComponent implements OnInit {
       this._toastr.info("Wrong CVV", "Unexpected Error  🥺", {  timeOut:5000});
     
     } else {
-        // Everything is correct. Add your form submission code here.
-        this._toastr.success("Correct Form", "Success  😊", {  timeOut:2000});
+        this.saveForm()
     }
 
 
   }
 
 
+
+  saveForm(){
+    let data = {
+      amount: this.data.price,
+      program: this.data._id
+    }
+
+    //submit form
+    this._crudService.addItem(data,"program/apply").subscribe(data=>{
+      //everything is correct
+      this._toastr.success(data.message, "Success  😊", {  timeOut:2000});
+      this.dialogRef.close({saved: true});
+
+    }, error=>{
+      this._toastr.info("Oops", "Unexpected Error  🥺", {  timeOut:5000});
+      console.error(error)
+    })
+  }
 
 
 

@@ -126,7 +126,7 @@
               </div>
               <div class="form-group" id="card-number-field" #cardNumberField >
                   <label for="cardNumber">Card Number</label>
-                  <input type="text" class="form-control" [(ngModel)]="cardNumber"  (keydown)="cardNumberKey()" [ngModelOptions]="{standalone: true}">
+                  <input type="text" class="form-control" [(ngModel)]="cardNumber"  (keyup)="cardNumberKey()" [ngModelOptions]="{standalone: true}">
               </div>
               <div class="form-group" id="expiration-date">
                   <label>Expiration Date</label>
