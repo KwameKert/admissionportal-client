@@ -1,4 +1,4 @@
-<div *ngIf="isLoading; else elseBlock" >
+<div *ngIf="!isLoaded; else elseBlock" >
     <ngx-skeleton-loader
     count="5"
     [theme]="{

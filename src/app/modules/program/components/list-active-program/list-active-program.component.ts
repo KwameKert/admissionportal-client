@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class ListActiveProgramComponent implements OnInit {
 
-  isLoading: boolean = false;
+  isLoaded: boolean = false;
   programs: Array<any>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -23,7 +23,9 @@ export class ListActiveProgramComponent implements OnInit {
   constructor(private _crudService: CrudService, private _router: Router) { }
 
   ngOnInit(): void {
+
     this.loadAllPrograms();
+
   }
 
 
@@ -33,9 +35,7 @@ export class ListActiveProgramComponent implements OnInit {
       this.dataSource = new MatTableDataSource<Program>(data.data)
       this.dataSource.paginator = this.paginator;
       this.obs = this.dataSource.connect();
-      //this.dataSource = new MatTableDataSource(data);
-     // this.dataSource.paginator = this.paginator;
-      this.isLoading = false;
+      this.isLoaded = true;
     }, error=>{
 
     })
