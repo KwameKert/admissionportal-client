@@ -56,6 +56,7 @@ export class ApplicantDetailComponent implements OnInit {
 
     if(file.type != 'application/pdf'){
       this._toastr.error("Only pdf allowed", "Oops ...",{timeOut:3000})
+      this.personalForm.controls['schoolDocument'].setErrors({'incorrect': true});
     }else{
       let formData = new FormData();
       formData.append('image', file, file.name)
@@ -63,7 +64,7 @@ export class ApplicantDetailComponent implements OnInit {
       this.personalForm.patchValue({
         schoolDocument: formData
       })
-      
+
     }
    // console.log(file.type);
 

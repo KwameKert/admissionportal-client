@@ -10,14 +10,14 @@
         
             <mat-card-content>
 
-                  <mat-horizontal-stepper [linear]="false" #stepper>
+                  <mat-horizontal-stepper [linear]="true" #stepper>
                     <mat-step [stepControl]="personalForm">
                       <form [formGroup]="personalForm">
                         <ng-template matStepLabel>Fill out your personal information</ng-template>
                         <div class="row">
                           <div class="col-6">
                             <mat-form-field appearance="outline"  >
-                              <mat-label>Full Name</mat-label>
+                              <mat-label>First Name</mat-label>
                               <input matInput placeholder="John"  formControlName="firstName" >
                               <mat-error *ngIf="personalForm.get('firstName').invalid"> Invalid input </mat-error>
                             </mat-form-field>
@@ -73,13 +73,8 @@
 
                             <div class="form-group">
                               <label for="exampleFormControlFile1">Results/ Certificate</label>
-                              <input type="file" class="form-control-file"  formControlName="schoolDocument" id="exampleFormControlFile1" (change)="uploadFile($event.target.files[0])">
+                              <input type="file" class="form-control-file"   id="exampleFormControlFile1" (change)="uploadFile($event.target.files[0])">
                             </div>
-                            <!-- <div class="form-group">
-                              <label for="exampleInputEmail1">Email address</label>
-                              <input type="file"  formControlName="schoolDocument" required>
-                             
-                            </div> -->
                           </div>
                         </div>
 
