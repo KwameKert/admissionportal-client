@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import { CrudService } from 'src/app/modules/shared/service/crud-service.service';
 import { ToastrService } from 'ngx-toastr';
+import { timeout } from 'rxjs/operators';
 
 @Component({
   selector: 'app-applicant-detail',
@@ -26,6 +27,7 @@ export class ApplicantDetailComponent implements OnInit {
       dob: new FormControl('', Validators.required),
       occupation: new FormControl('', Validators.required),
       address: new FormControl('', Validators.required),
+      schoolDocument: new FormControl('', Validators.required)
     
     })
 
@@ -39,12 +41,31 @@ export class ApplicantDetailComponent implements OnInit {
       fatherAddress: '',
     })
 
-    this.documentForm = this._fb.group({
-
-        schoolDocument: new FormControl('', Validators.required)
-
-    })
+ 
 
   }
 
+
+  saveData(){
+    let data = {...this.personalForm.value, ...this.guardianForm.value}
+    console.log(data)
+  }
+
+
+  uploadFile(file: File){
+
+    if(file.type != 'application/pdf'){
+      this._toastr.error("Only pdf allowed", "Oops ...",{timeOut:3000})
+    }else{
+      let formData = new FormData();
+      formData.append('image', file, file.name)
+
+      this.personalForm.patchValue({
+        schoolDocument: formData
+      })
+      
+    }
+   // console.log(file.type);
+
+  }
 }

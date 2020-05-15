@@ -10,7 +10,7 @@
         
             <mat-card-content>
 
-                  <mat-horizontal-stepper [linear]="true" #stepper>
+                  <mat-horizontal-stepper [linear]="false" #stepper>
                     <mat-step [stepControl]="personalForm">
                       <form [formGroup]="personalForm">
                         <ng-template matStepLabel>Fill out your personal information</ng-template>
@@ -68,9 +68,24 @@
                           </div>
                         </div>
 
+                        <div class="row">
+                          <div class="col-12">
 
-                        <div>
-                          <button mat-button matStepperNext>Next</button>
+                            <div class="form-group">
+                              <label for="exampleFormControlFile1">Results/ Certificate</label>
+                              <input type="file" class="form-control-file"  formControlName="schoolDocument" id="exampleFormControlFile1" (change)="uploadFile($event.target.files[0])">
+                            </div>
+                            <!-- <div class="form-group">
+                              <label for="exampleInputEmail1">Email address</label>
+                              <input type="file"  formControlName="schoolDocument" required>
+                             
+                            </div> -->
+                          </div>
+                        </div>
+
+
+                        <div class="float-right">
+                          <button mat-raised-button matStepperNext color="primary">Next</button>
                         </div>
                       </form>
                     </mat-step>
@@ -131,9 +146,9 @@
                         </div>
 
 
-                        <div>
-                          <button mat-button matStepperPrevious>Back</button>
-                          <button mat-button matStepperNext>Next</button>
+                        <div class="float-right">
+                          <button mat-raised-button  color="warn" matStepperPrevious>Back</button>
+                          <button mat-raised-button color="primary" matStepperNext class="ml-2" (click)="saveData()"> Submit</button>
                         </div>
                       </form>
                     </mat-step>
