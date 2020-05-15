@@ -21,6 +21,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { PreloaderComponent } from './components/preloader/preloader.component';
 import {MatListModule} from '@angular/material/list';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatStepperModule} from '@angular/material/stepper';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 
@@ -49,7 +51,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     NgxSkeletonLoaderModule,
     MatMenuModule,
     MatListModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatStepperModule,
+    MatNativeDateModule,
     
   ],
   providers: [  
@@ -79,7 +83,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     ExcerptFilter,
     MatMenuModule,
     MatListModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatStepperModule,
+    MatNativeDateModule,
   ],
   entryComponents: [DeleteItemComponent]
 })

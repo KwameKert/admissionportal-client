@@ -1,0 +1,157 @@
+<div class="row background justify-content-center">
+    <div class="col-md-8 col-sm-12 col-lg-8 mt-4">
+        <mat-card >
+            <mat-card-header>
+                <mat-card-title>
+                    Applicant Details
+                </mat-card-title>
+            </mat-card-header>
+        
+        
+            <mat-card-content>
+
+                  <mat-horizontal-stepper [linear]="true" #stepper>
+                    <mat-step [stepControl]="personalForm">
+                      <form [formGroup]="personalForm">
+                        <ng-template matStepLabel>Fill out your personal information</ng-template>
+                        <div class="row">
+                          <div class="col-6">
+                            <mat-form-field appearance="outline"  >
+                              <mat-label>Full Name</mat-label>
+                              <input matInput placeholder="John"  formControlName="firstName" >
+                              <mat-error *ngIf="personalForm.get('firstName').invalid"> Invalid input </mat-error>
+                            </mat-form-field>
+                          </div>
+                          <div class="col-6">
+                            <mat-form-field appearance="outline"  >
+                              <mat-label>Last Name</mat-label>
+                              <input matInput placeholder="Asamoah"  formControlName="lastName" >
+                              <mat-error *ngIf="personalForm.get('lastName').invalid"> Invalid input </mat-error>
+                            </mat-form-field>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-6">
+                            <mat-form-field appearance="outline"  >
+                              <mat-label>Other Names</mat-label>
+                              <input matInput placeholder="Fifi"  formControlName="otherNames" >
+                              <mat-error *ngIf="personalForm.get('otherNames').invalid"> Invalid input </mat-error>
+                            </mat-form-field>
+                          </div>
+                          <div class="col-6">
+                            <mat-form-field appearance="outline"  >
+                              <mat-label>Date of birth</mat-label>
+                              <input matInput [matDatepicker]="picker"   formControlName="dob">
+                              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                              <mat-datepicker #picker></mat-datepicker>
+                              <mat-error *ngIf="personalForm.get('dob').invalid"> Invalid input </mat-error>
+                            </mat-form-field>
+                          </div>
+                        </div>
+
+
+                        <div class="row">
+                          <div class="col-6">
+                            <mat-form-field appearance="outline"  >
+                              <mat-label>Address</mat-label>
+                              <input matInput placeholder="Fifi"  formControlName="address" >
+                              <mat-error *ngIf="personalForm.get('address').invalid"> Invalid input </mat-error>
+                            </mat-form-field>
+                          </div>
+                          <div class="col-6">
+                            <mat-form-field appearance="outline"  >
+                              <mat-label>Occupation</mat-label>
+                              <input matInput placeholder="student"  formControlName="occupation" >
+                              <mat-error *ngIf="personalForm.get('occupation').invalid"> Invalid input </mat-error>
+                            </mat-form-field>
+                          </div>
+                        </div>
+
+
+                        <div>
+                          <button mat-button matStepperNext>Next</button>
+                        </div>
+                      </form>
+                    </mat-step>
+                    <mat-step [stepControl]="guardianForm">
+                      <form [formGroup]="guardianForm">
+                        <ng-template matStepLabel>Fill out guardian information</ng-template>
+                        <div class="row">
+                          <div class="col-6">
+                            <mat-form-field appearance="outline"  >
+                              <mat-label>Mother Name</mat-label>
+                              <input matInput placeholder="Mrs Owusu"  formControlName="motherName" >
+                              <mat-error *ngIf="guardianForm.get('motherName').invalid"> Invalid input </mat-error>
+                            </mat-form-field>
+                          </div>
+                          <div class="col-6">
+                            <mat-form-field appearance="outline"  >
+                              <mat-label>Mother Address</mat-label>
+                              <input matInput placeholder="Jamestown"  formControlName="motherAddress" >
+                              <mat-error *ngIf="guardianForm.get('motherAddress').invalid"> Invalid input </mat-error>
+                            </mat-form-field>
+                          </div>
+                        </div>
+
+
+                        <div class="row">
+                          <div class="col-6">
+                            <mat-form-field appearance="outline"  >
+                              <mat-label>Mother Phone</mat-label>
+                              <input matInput placeholder="+23302025145"  formControlName="motherPhone" >
+                              <mat-error *ngIf="guardianForm.get('motherPhone').invalid"> Invalid input </mat-error>
+                            </mat-form-field>
+                          </div>
+                          <div class="col-6">
+                            <mat-form-field appearance="outline"  >
+                              <mat-label>FatherName</mat-label>
+                              <input matInput placeholder="Mr Owusu"  formControlName="fatherName" >
+                              <mat-error *ngIf="guardianForm.get('fatherName').invalid"> Invalid input </mat-error>
+                            </mat-form-field>
+                          </div>
+                        </div>
+
+
+                        <div class="row">
+                          <div class="col-6">
+                            <mat-form-field appearance="outline"  >
+                              <mat-label>Father Address</mat-label>
+                              <input matInput placeholder="Jamestown"  formControlName="fatherAddress" >
+                              <mat-error *ngIf="guardianForm.get('fatherAddress').invalid"> Invalid input </mat-error>
+                            </mat-form-field>
+                          </div>
+                          <div class="col-6">
+                            <mat-form-field appearance="outline"  >
+                              <mat-label>Father Phone</mat-label>
+                              <input matInput placeholder="+23302025145"  formControlName="fatherPhone" >
+                              <mat-error *ngIf="guardianForm.get('fatherPhone').invalid"> Invalid input </mat-error>
+                            </mat-form-field>
+                          </div>
+                        </div>
+
+
+                        <div>
+                          <button mat-button matStepperPrevious>Back</button>
+                          <button mat-button matStepperNext>Next</button>
+                        </div>
+                      </form>
+                    </mat-step>
+                    <mat-step>
+                      <ng-template matStepLabel>Done</ng-template>
+                      <p>You are now done.</p>
+                      <div>
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button mat-button (click)="stepper.reset()">Reset</button>
+                      </div>
+                    </mat-step>
+                  </mat-horizontal-stepper>
+                  
+        
+            </mat-card-content>
+        
+        </mat-card>
+    </div>
+</div>
+
+
