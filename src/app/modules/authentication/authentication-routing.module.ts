@@ -7,7 +7,7 @@ const routes: Routes = [
 
   {path: '', component: LoginComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'applicant_details', component: ApplicantDetailComponent}
+  {path: 'applicant_details/:id', component: ApplicantDetailComponent}
   
 ];
 

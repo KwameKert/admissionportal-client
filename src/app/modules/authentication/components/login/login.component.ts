@@ -34,7 +34,8 @@ export class LoginComponent implements OnInit {
         userId: data.user.id,
         token: data.token,
         username: data.user.username,
-        role: data.user.role
+        role: data.user.role,
+        isActivated: data.user.isActivated
     }
     
     this._authService.setUserDetails(authData);
@@ -47,7 +48,13 @@ export class LoginComponent implements OnInit {
         break;
 
       case "applicant":
-        this.router.navigate(['/applicant/show_programs']);
+        if(!authData.isActivated){
+          this.router.navigate([`/applicant_details/${authData.userId}`])
+
+        }else{
+
+          this.router.navigate(['/applicant/show_programs']);
+        }
         break;
     }
     this._toastr.success("Welcome to University 🙂","",{

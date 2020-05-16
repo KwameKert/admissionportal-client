@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment }  from '../../../../environments/environment';
 import { Observable } from 'rxjs';
 
@@ -41,6 +41,13 @@ export class AuthService {
  public get isLoggedIn(){
    return this.loggedInStatus;
  }
+
+
+ public saveDetails(data: any): Observable<any>{
+ 
+  return this._httpClient.post<any>(`${this._baseUrl}/user/applicantDetails/`, data)
+}
+
 
 
 
