@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { timeout } from 'rxjs/operators';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../service/auth.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class ApplicantDetailComponent implements OnInit {
   personalForm: FormGroup;
   guardianForm : FormGroup;
 
-  constructor(private _authService: AuthService, private _toastr: ToastrService, private _fb: FormBuilder, private _route: ActivatedRoute) { }
+  constructor(private _authService: AuthService, private _toastr: ToastrService, private _fb: FormBuilder, private _route: ActivatedRoute, private _router: Router) { }
 
   ngOnInit(): void {
     this.userId = this._route.snapshot.paramMap.get('id');
@@ -58,20 +58,46 @@ export class ApplicantDetailComponent implements OnInit {
 
 
   saveData(){
-    //let formData  = new FormData();
+
+    //mergin formbuilders
     let data = {...this.personalForm.value, ...this.guardianForm.value}
     let result = Object.assign({}, data);
 
+    //pushing data to formdata
             for (let o in result) {
                     this.formData.append(o, result[o])
             }
             console.log(this.formData)
+
+            //saving info
+            this._authService.saveDetails(this.formData).then((result: any)=>{
+              console.log(result, typeof(result))
+              if(result){
+                this._toastr.success("Welcome to University 🙂","",{
+                  timeOut:2000
+                })
+
+              }else{
+                this._toastr.info("An error occured","Oops",{
+                  timeOut:2000
+                })
+              }
+           
+              this._router.navigate(['/applicant/show_programs']);
+            }).catch(error=>{
+              this._toastr.error("An error occured","Oops",{
+                timeOut:2000
+              })
+            })
     
-    this._authService.saveDetails(this.formData).subscribe(data=>{
-        console.log(data)
-    }, error => {
-      console.error(error)
-    })
+    // this._authService.saveDetails(this.formData).subscribe(data=>{
+    //     console.log(data)
+    // }, error => {
+    //   console.error(error)
+    // })
+
+
+
   }
 
 
@@ -82,15 +108,36 @@ export class ApplicantDetailComponent implements OnInit {
       this.personalForm.controls['schoolDocument'].setErrors({'incorrect': true});
     }else{
 
-      this.formData.append('schoolDocument', file, file.name)
+             this.formData.append('schoolDocument', file, file.name)
 
-      console.log(this.formData.get('schoolDocument'))
-      this._authService.saveDetails(this.formData).subscribe(data=>{
 
-        console.log(data)
-      }, error=>{
-        console.error(error)
-      })
+//       var myHeaders = new Headers();
+// myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWIzNGQ1YmE1YWZjZjM0ZjAyNWVhOTEiLCJpYXQiOjE1ODk2NTg4MjMsImV4cCI6MTU4OTY2MjQyM30.jRZW_s4AjVf4NTuXQy9dQJ7QqeQgVN0v4WuhHy3hA-Y");
+
+// var formdata = new FormData();
+// formdata.append("schoolDocument", file, file.name);
+// formdata.append("firstName", "kertice");
+// formdata.append("lastName", "asante");
+
+// var requestOptions = {
+//   method: 'POST',
+//   headers: myHeaders,
+//   body: formdata
+// };
+
+// fetch("http://localhost:3000/user/applicantDetails/", requestOptions)
+//   .then(response => response.text())
+//   .then(result => console.log(result))
+//   .catch(error => console.log('error', error));
+
+      // console.log(this.formData.get('schoolDocument'))
+
+      // this._authService.saveDetails(this.formData).subscribe(data=>{
+
+      //   console.log(data)
+      // }, error=>{
+      //   console.error(error)
+      // })
 
 
       // this.personalForm.patchValue({

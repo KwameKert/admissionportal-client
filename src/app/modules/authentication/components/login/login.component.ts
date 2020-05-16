@@ -54,12 +54,13 @@ export class LoginComponent implements OnInit {
         }else{
 
           this.router.navigate(['/applicant/show_programs']);
+          this._toastr.success("Welcome to University 🙂","",{
+            timeOut:2000
+          })
         }
         break;
     }
-    this._toastr.success("Welcome to University 🙂","",{
-      timeOut:2000
-    })
+
 
     }, error => {
   

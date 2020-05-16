@@ -3,12 +3,16 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment }  from '../../../../environments/environment';
 import { Observable } from 'rxjs';
 
+const HttpUploadOptions = {
+  headers: new HttpHeaders({ "Content-Type": "multipart/form-data" })
+}
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
   _baseUrl: string = environment.api_host;
+   token: string = localStorage.getItem('uniToken');
 
   constructor(private _httpClient: HttpClient) { }
 
@@ -43,9 +47,26 @@ export class AuthService {
  }
 
 
- public saveDetails(data: any): Observable<any>{
- 
-  return this._httpClient.post<any>(`${this._baseUrl}/user/applicantDetails/`, data)
+public saveDetails =  (data: any) => {
+  
+  var myHeaders = new Headers();
+  myHeaders.append("Authorization", `Bearer ${this.token}`);
+
+  
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: data
+  };
+  
+  fetch(`${this._baseUrl}/user/applicantDetails/`, requestOptions)
+    .then(result => {
+      console.log(result)
+      return true})
+    .catch(error => {
+      console.log(error)
+      return false});
+  
 }
 
 
