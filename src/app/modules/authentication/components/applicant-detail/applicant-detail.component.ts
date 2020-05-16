@@ -29,8 +29,6 @@ export class ApplicantDetailComponent implements OnInit {
 
   loadForms(){
 
-
-
    this.personalForm =  this._fb.group({
 
       owner: this.userId,
@@ -64,37 +62,23 @@ export class ApplicantDetailComponent implements OnInit {
     let result = Object.assign({}, data);
 
     //pushing data to formdata
-            for (let o in result) {
-                    this.formData.append(o, result[o])
-            }
-            console.log(this.formData)
+    for (let o in result) {
+            this.formData.append(o, result[o])
+    }
+    console.log(this.formData)
 
-            //saving info
-            this._authService.saveDetails(this.formData).then((result: any)=>{
-              console.log(result, typeof(result))
-              if(result){
-                this._toastr.success("Welcome to University 🙂","",{
-                  timeOut:2000
-                })
-
-              }else{
-                this._toastr.info("An error occured","Oops",{
-                  timeOut:2000
-                })
-              }
-           
-              this._router.navigate(['/applicant/show_programs']);
-            }).catch(error=>{
-              this._toastr.error("An error occured","Oops",{
-                timeOut:2000
-              })
-            })
-    
-    // this._authService.saveDetails(this.formData).subscribe(data=>{
-    //     console.log(data)
-    // }, error => {
-    //   console.error(error)
-    // })
+    //saving info
+    this._authService.saveDetails(this.formData).subscribe(data=>{
+      this._router.navigate(['/applicant/show_programs']);
+      this._toastr.success("Welcome to University 🙂","",{
+        timeOut:2000
+      })
+    }, error => {
+      console.error(error)
+      this._toastr.info("An error occured ","Aw snap!",{
+        timeOut:2000
+      })
+    })
 
 
 
@@ -108,52 +92,11 @@ export class ApplicantDetailComponent implements OnInit {
       this.personalForm.controls['schoolDocument'].setErrors({'incorrect': true});
     }else{
 
-             this.formData.append('schoolDocument', file, file.name)
-
-
-//       var myHeaders = new Headers();
-// myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWIzNGQ1YmE1YWZjZjM0ZjAyNWVhOTEiLCJpYXQiOjE1ODk2NTg4MjMsImV4cCI6MTU4OTY2MjQyM30.jRZW_s4AjVf4NTuXQy9dQJ7QqeQgVN0v4WuhHy3hA-Y");
-
-// var formdata = new FormData();
-// formdata.append("schoolDocument", file, file.name);
-// formdata.append("firstName", "kertice");
-// formdata.append("lastName", "asante");
-
-// var requestOptions = {
-//   method: 'POST',
-//   headers: myHeaders,
-//   body: formdata
-// };
-
-// fetch("http://localhost:3000/user/applicantDetails/", requestOptions)
-//   .then(response => response.text())
-//   .then(result => console.log(result))
-//   .catch(error => console.log('error', error));
-
-      // console.log(this.formData.get('schoolDocument'))
-
-      // this._authService.saveDetails(this.formData).subscribe(data=>{
-
-      //   console.log(data)
-      // }, error=>{
-      //   console.error(error)
-      // })
-
-
-      // this.personalForm.patchValue({
-      //   uploadDocument: 'hello'
-      // })
-
-      // this._crudService.addItem(this.formData, "user/applicantDetails").subscribe(data=>{
-      //     console.log(data)
-      // }, error=>{
-      //   console.error(error)
-      // })
-
-      // console.log(this.personalForm.value)
+      //appending file to formdata
+      this.formData.append('schoolDocument', file, file.name)
 
     }
-   // console.log(file.type);
+   
 
   }
 }

@@ -47,28 +47,11 @@ export class AuthService {
  }
 
 
-public saveDetails =  (data: any) => {
-  
-  var myHeaders = new Headers();
-  myHeaders.append("Authorization", `Bearer ${this.token}`);
+public saveDetails = (data: any) => {
 
-  
-  var requestOptions = {
-    method: 'POST',
-    headers: myHeaders,
-    body: data
-  };
-  
-  fetch(`${this._baseUrl}/user/applicantDetails/`, requestOptions)
-    .then(result => {
-      console.log(result)
-      return true})
-    .catch(error => {
-      console.log(error)
-      return false});
-  
+ return this._httpClient.post<any>( `${this._baseUrl}/user/applicantDetails/`,  data);
+
 }
-
 
 
 
