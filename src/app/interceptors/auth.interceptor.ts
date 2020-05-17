@@ -23,17 +23,17 @@ intercept(
                     switch(err.status){
 
                         case 417:
-                            this._toastr.info("Authentication invalid", err.error.message+"  🥺", {  timeOut:5000});
+                            this._toastr.error("Authentication invalid", err.error.message+"  🥺", {  timeOut:5000});
+                            break;
 
                         case 403:
                             this._toastr.error("Authentication invalid", "Unexpected Error  🥺", {  timeOut:5000});
                             this._router.navigate(['/login']);
+                            break;
 
-                        case 400:
-                        case 402:
-                        case 401:
-                        case 404:    
-                            this._toastr.info( err.error.error+"  🥺", "Aw Snap!", {  timeOut:5000});
+                        default:  
+                            this._toastr.info( err.error.message+"  🥺", "Aw Snap!", {  timeOut:5000});
+                            break;
 
 
 
