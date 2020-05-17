@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
   loginUser(){
 
     this.isLoading = true;
-    console.log("OM ere")
+
     this._authService.loginUser(this.loginForm.value).subscribe(data=>{
 
       let authData = {
@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
     
     this._authService.setUserDetails(authData);
 
-  //  console.log(authData)
+
     switch(authData.role){
 
       case "admin":
@@ -53,10 +53,12 @@ export class LoginComponent implements OnInit {
 
         }else{
 
-          this.router.navigate(['/applicant/show_programs']);
-          this._toastr.success("Welcome to University 🙂","",{
-            timeOut:2000
-          })
+          this.router.navigate(['/applicant/show_programs']).then(()=>{
+            this._toastr.success("Welcome to University 🙂","",{
+              timeOut:2000
+            })
+          });
+         
         }
         break;
     }

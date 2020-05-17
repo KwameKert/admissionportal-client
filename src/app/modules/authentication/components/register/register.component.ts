@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {FormControl, Validators, FormGroup, FormBuilder} from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../service/auth.service';
@@ -13,6 +13,9 @@ export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup ;
   isLoading: boolean = false;
+  @ViewChild("password") password: ElementRef;
+  @ViewChild("confirmPassword") confirmPassword: ElementRef;
+
   constructor(private router: Router, private _fb: FormBuilder, private _authService: AuthService,  private _toastr: ToastrService) { }
 
   
@@ -21,11 +24,12 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this._fb.group({
       username: new FormControl('', Validators.required),
       email: new FormControl('', Validators.required),
+      role: 'applicant',
       password: new FormControl('', Validators.required)
     })
   }
 
-  loginUser(){
+  registerUser(){
 
     this.isLoading = true;
 
@@ -38,29 +42,16 @@ export class RegisterComponent implements OnInit {
         role: data.user.role,
         isActivated: data.user.isActivated
     }
-    
+
+    //saving user details 
     this._authService.setUserDetails(authData);
 
-  //  console.log(authData)
-    switch(authData.role){
-
-      case "admin":
-        this.router.navigate(['/admin/dashboard']);
-        break;
-
-      case "applicant":
-        if(!authData.isActivated){
-          this.router.navigate([`/applicant_details/${authData.userId}`])
-
-        }else{
-
-          this.router.navigate(['/applicant/show_programs']);
-          this._toastr.success("Welcome to University 🙂","",{
-            timeOut:2000
-          })
-        }
-        break;
-    }
+    //routing to applicant dashboard
+    this.router.navigate(['/applicant/show_programs']).then(()=>{
+      this._toastr.success("Welcome to University 🙂","",{
+        timeOut:2000
+      })
+    });
 
 
     }, error => {
@@ -72,10 +63,33 @@ export class RegisterComponent implements OnInit {
 
     this.isLoading = false;
   
-  
+  }
 
+
+  checkPass(){
+    let pass = this.password.nativeElement.value
+    let confirm = this.confirmPassword.nativeElement.value
+
+    if(pass == confirm){
+      this.registerForm.patchValue({
+        password: pass
+      })
   
+      this.password.nativeElement.classList.add('is-valid');
+      this.password.nativeElement.classList.remove('is-invalid');
+      this.confirmPassword.nativeElement.classList.add('is-valid');
+      this.confirmPassword.nativeElement.classList.remove('is-invalid');
     
+    }else{
+    
+      this.password.nativeElement.classList.add('is-invalid');
+      this.password.nativeElement.classList.remove('is-valid');
+      this.confirmPassword.nativeElement.classList.add('is-invalid');
+      this.confirmPassword.nativeElement.classList.remove('is-valid');
+
+
+    }
+
   }
 
 }

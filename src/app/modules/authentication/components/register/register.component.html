@@ -10,7 +10,7 @@
         <div class="col-md-4 col-lg-4 mt-4">
             <div class="row offset-md-1  col-md-12 col-lg-12 mt-5">
                 
-                    <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+                    <form [formGroup]="registerForm" (ngSubmit)="registerUser()" autocomplete="off">
                         <h1 class="text-center mb-5" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Register</h1>
                        <div class="form-group">
                            <div class="form-label">Username</div>
@@ -19,20 +19,23 @@
 
                        <div class="form-group">
                            <div class="form-label">Email</div>
-                           <input type="text" placeholder="Enter username here" class="form-control input-lg" autocomplete="off"  formControlName="username" >
+                           <input type="email" placeholder="Enter username here" class="form-control input-lg" autocomplete="off"  formControlName="email" >
                        </div>
     
                        <div class="form-group">
                         <div class="form-label">Password</div>
-                        <input type="password" placeholder="Enter password here" class="form-control input-lg"  autocomplete="off" formControlName="password">
+                        <input type="password" placeholder="Enter password here" class="form-control input-lg"  autocomplete="off" #password (keyup)="checkPass()">
                     </div>
                        <div class="form-group">
                         <div class="form-label">Confirm Password</div>
-                        <input type="password" placeholder="Enter password here" class="form-control input-lg"  autocomplete="off" formControlName="password">
+                        <input type="password" placeholder="Enter password here" class="form-control input-lg has-error"  autocomplete="off" #confirmPassword (keyup)="checkPass()">
+                        <div class="invalid-feedback">
+                            Passwords do not match
+                        </div>
                     </div>
                         <div class=" text-center">
-                            <button class="btn btn-primary btn-block" type="submit"   [disabled]="!loginForm.valid"><span class="px-3">Login</span></button>
-                            <p><a href=""   > Don't have an account yet?</a></p>
+                            <button class="btn btn-success btn-block" type="submit"   [disabled]="!registerForm.valid"><span class="px-3">Register</span></button>
+                            <p><a href=""  routerLink="/login"  > Already have an account?</a></p>
                            
                         </div>
                       </form>
