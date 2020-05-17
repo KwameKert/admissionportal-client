@@ -89,9 +89,12 @@ export class ApplicantDetailComponent implements OnInit {
 
     if(file.type != 'application/pdf'){
       this._toastr.error("Only pdf allowed", "Oops ...",{timeOut:3000})
-      this.personalForm.controls['schoolDocument'].setErrors({'incorrect': true});
+      this.personalForm.controls['uploadDocument'].setErrors({'incorrect': true});
     }else{
 
+      this.personalForm.patchValue({
+        uploadDocument: 'done'
+      })
       //appending file to formdata
       this.formData.append('schoolDocument', file, file.name)
 

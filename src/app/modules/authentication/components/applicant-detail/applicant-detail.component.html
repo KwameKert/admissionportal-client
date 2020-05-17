@@ -80,7 +80,7 @@
 
 
                         <div class="float-right">
-                          <button mat-raised-button matStepperNext color="primary" >Next</button>
+                          <button mat-raised-button matStepperNext color="primary"  [disabled]="!personalForm.valid">Next</button>
                         </div>
                       </form>
                     </mat-step>
