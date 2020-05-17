@@ -3,14 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import {
   ListActiveProgramComponent, MyProgramComponent
 } from '../program/index';
-import { MakeDepositComponent, CardDetailsComponent} from '../transaction';
+import { MakeDepositComponent} from '../transaction';
 
 
 const routes: Routes = [
 
     {path: 'show_programs', component: ListActiveProgramComponent},
     {path: 'make_deposit/:id', component: MakeDepositComponent},
-    {path: 'program', component: MyProgramComponent}
+   {path: 'program', component: MyProgramComponent}
 
 ]
 

@@ -10,7 +10,7 @@ import { TransactionModule } from '../transaction/transaction.module';
   declarations: [],
   imports: [
     CommonModule,
-    ProgramModule,
+   ProgramModule,
     TransactionModule,
     ApplicantRoutingModule
   ]

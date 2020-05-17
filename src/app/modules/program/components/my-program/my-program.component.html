@@ -1,1 +1,47 @@
-<p>my-program works!</p>
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>
+            My Applcations
+        </mat-card-title>
+
+    </mat-card-header>
+        <mat-card-content>
+
+            <div class="row" style="width:100%" >
+                <div class="col-12"> 
+                    <table class="table">
+                        <thead class="thead-dark">
+                          <tr>
+                             
+                            <th scope="col">Id</th>
+                            <th scope="col">Program</th>
+                            <th scope="col">Date Submitted</th>
+                            <th scope="col">Status</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let application of applications">
+                            <th scope="row">{{ application._id}} </th>
+                            <td> {{application.program.name }}</td>
+                            <td>{{application.createdAt | date: 'fullDate' }}</td>
+                            <td> 
+                                <span *ngIf="application.status == 'pending'" class="badge badge-warning">Pending</span> 
+                                <span *ngIf="application.status == 'accepted'" class="badge badge-success">Accepted</span>
+                                <span *ngIf="application.status == 'rejected'" class="badge badge-danger">Rejected</span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table> 
+                </div>
+
+                </div>
+
+
+          
+        </mat-card-content>
+ 
+</mat-card>
+
+
+  
+ 

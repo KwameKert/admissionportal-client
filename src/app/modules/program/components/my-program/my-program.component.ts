@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CrudService } from 'src/app/modules/shared/service/crud-service.service';
+
 
 @Component({
   selector: 'app-my-program',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyProgramComponent implements OnInit {
 
-  constructor() { }
+  applications: Array<object>;
+  constructor(private _crudService: CrudService
+    ) { }
 
   ngOnInit(): void {
+   this.loadApplications()
+  }
+
+
+  loadApplications(){
+    this._crudService.fetchAll("myapplications").subscribe(data=>{
+
+      this.applications = data.data;
+    }, error =>{
+      console.error(error)
+    })
   }
 
 }
