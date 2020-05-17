@@ -23,6 +23,10 @@ export class AuthService {
    return this._httpClient.post(`http://localhost:3000/users/login`, data);
  }
 
+ registerUser(data: any ): Observable<any>{
+   return this._httpClient.post(`http://localhost:3000/users/`, data);
+ }
+
  setUserDetails(authData: any){
    localStorage.setItem("uniToken", authData.token);
    localStorage.setItem("username", authData.username);
