@@ -44,6 +44,7 @@ export class CardDetailsComponent implements OnInit {
     this.cardForm = this._fb.group({
         program : new FormControl('', Validators.required),
         amount: new FormControl('', Validators.required),
+        method: 'card'
     })
   }
 
