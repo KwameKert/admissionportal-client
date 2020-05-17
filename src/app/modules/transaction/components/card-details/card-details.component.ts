@@ -16,6 +16,7 @@ export class CardDetailsComponent implements OnInit {
 
    
   cardForm: FormGroup;
+  formValid: boolean  = false;
   submitted: boolean;
   formProcess: boolean;
   message: string;
@@ -41,10 +42,8 @@ export class CardDetailsComponent implements OnInit {
   
 
     this.cardForm = this._fb.group({
-        cardNumber:  new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(16)]),
-        expMonth: new FormControl('', Validators.required),
-        expYear:  new FormControl('', Validators.required),
-        cvv: new FormControl('', [Validators.required, Validators.maxLength(4)])
+        program : new FormControl('', Validators.required),
+        amount: new FormControl('', Validators.required),
     })
   }
 
@@ -56,13 +55,14 @@ export class CardDetailsComponent implements OnInit {
    //validate cardnumber with error classes
 
     if ($.payform.validateCardNumber(this.cardNumber) == false) {
-      console.log("error")
+      
         this.cardNumberField.nativeElement.classList.remove('has-success');
         this.cardNumberField.nativeElement.classList.add('has-error');
     } else {
       
         this.cardNumberField.nativeElement.classList.remove('has-error');
         this.cardNumberField.nativeElement.classList.add('has-success');
+        this.formValid = true;
     }
 
     //find card category

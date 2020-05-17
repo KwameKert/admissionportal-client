@@ -159,7 +159,7 @@
                   <img src="assets/images/amex.jpg" id="amex" #amex>
               </div>
               <div class="form-group" id="pay-now">
-                  <button type="submit" class="btn btn-default" id="confirm-purchase">Confirm</button>
+                  <button type="submit" class="btn btn-default" id="confirm-purchase" [disabled]="!formValid">Confirm</button>
               </div>
           </form>
       </div>

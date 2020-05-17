@@ -9,11 +9,12 @@ import { SharedModule } from '../shared/shared.module';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ListActiveProgramComponent } from './components/list-active-program/list-active-program.component';
+import { MyProgramComponent } from './components/my-program/my-program.component';
 
 
 
 @NgModule({
-  declarations: [ListProgramComponent, AddProgramComponent, EditProgramComponent, ViewProgramComponent, ListActiveProgramComponent],
+  declarations: [ListProgramComponent, AddProgramComponent, EditProgramComponent, ViewProgramComponent, ListActiveProgramComponent, MyProgramComponent],
   imports: [
     CommonModule,
   //  ProgramRoutingModule,
@@ -30,7 +31,8 @@ import { ListActiveProgramComponent } from './components/list-active-program/lis
     AddProgramComponent,
     EditProgramComponent, 
     ViewProgramComponent,
-    ListActiveProgramComponent
+    ListActiveProgramComponent,
+    MyProgramComponent
   ]
 })
 export class ProgramModule { }
