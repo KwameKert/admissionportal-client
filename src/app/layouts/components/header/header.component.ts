@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
+  name: string = localStorage.getItem("username");
+  
   @Output() toggleSidebarForMe : EventEmitter<any> = new EventEmitter();
   constructor(private _authService: AuthService, private _router: Router) { }
 
