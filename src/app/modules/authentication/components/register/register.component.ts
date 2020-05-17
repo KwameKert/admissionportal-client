@@ -3,6 +3,7 @@ import {FormControl, Validators, FormGroup, FormBuilder} from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../service/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -47,14 +48,14 @@ export class RegisterComponent implements OnInit {
     this._authService.setUserDetails(authData);
 
     //routing to applicant dashboard
-    this.router.navigate(['/applicant/show_programs']).then(()=>{
-      this._toastr.success("Welcome to University 🙂","",{
+    this.router.navigate([`/applicant_details/${authData.userId}`]).then(()=>{
+      this._toastr.success("Registeration successfull 🙂","",{
         timeOut:2000
       })
     });
 
 
-    }, error => {
+    }, error=> {
   
       console.error("error ",error)
   

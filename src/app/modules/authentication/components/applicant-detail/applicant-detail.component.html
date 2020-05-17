@@ -10,7 +10,7 @@
         
             <mat-card-content>
 
-                  <mat-horizontal-stepper [linear]="false" #stepper>
+                  <mat-horizontal-stepper [linear]="true" #stepper>
                     <mat-step [stepControl]="personalForm">
                       <form [formGroup]="personalForm">
                         <ng-template matStepLabel>Fill out your personal information</ng-template>
@@ -80,7 +80,7 @@
 
 
                         <div class="float-right">
-                          <button mat-raised-button matStepperNext color="primary">Next</button>
+                          <button mat-raised-button matStepperNext color="primary" >Next</button>
                         </div>
                       </form>
                     </mat-step>
@@ -143,7 +143,7 @@
 
                         <div class="float-right">
                           <button mat-raised-button  color="warn" matStepperPrevious>Back</button>
-                          <button mat-raised-button color="primary" matStepperNext class="ml-2" (click)="saveData()"> Submit</button>
+                          <button mat-raised-button color="primary" matStepperNext class="ml-2" (click)="saveData()" [disabled]="!guardianForm.valid"> Submit</button>
                         </div>
                       </form>
                     </mat-step>

@@ -19,15 +19,40 @@ intercept(
             catchError((err: any) => {
                 
                 if(err instanceof HttpErrorResponse) {
+
+                    switch(err.status){
+
+                        case 417:
+                            this._toastr.info("Authentication invalid", err.error.message+"  🥺", {  timeOut:5000});
+
+                        case 403:
+                            this._toastr.error("Authentication invalid", "Unexpected Error  🥺", {  timeOut:5000});
+                            this._router.navigate(['/login']);
+
+                        case 400:
+                        case 402:
+                        case 401:
+                        case 404:    
+                            this._toastr.info( err.error.error+"  🥺", "Aw Snap!", {  timeOut:5000});
+
+
+
+                    }
                 
-                    if(err.status == 417){
-                        this._toastr.info("Authentication invalid", err.error.message+"  🥺", {  timeOut:5000});
-                    }
+                    // if(err.status == 417){
+                    //     this._toastr.info("Authentication invalid", err.error.message+"  🥺", {  timeOut:5000});
+                    // }
                     
-                    if(err.status == 403){
-                        this._toastr.info("Authentication invalid", "Unexpected Error  🥺", {  timeOut:5000});
-                        this._router.navigate(['/login']);
-                    }
+                    // if(err.status == 403){
+                    //     this._toastr.info("Authentication invalid", "Unexpected Error  🥺", {  timeOut:5000});
+                    //     this._router.navigate(['/login']);
+                    // }
+
+                    // if(err.status == 403){
+                    //     this._toastr.info("Authentication invalid", "Unexpected Error  🥺", {  timeOut:5000});
+                    //     this._router.navigate(['/login']);
+                    // }
+                  
                 }
                 return of(err);
             }));

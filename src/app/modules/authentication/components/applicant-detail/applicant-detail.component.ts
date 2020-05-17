@@ -32,24 +32,24 @@ export class ApplicantDetailComponent implements OnInit {
    this.personalForm =  this._fb.group({
 
       owner: this.userId,
-      firstName: new FormControl('', Validators.required),
-      lastName: new FormControl('', Validators.required),
-      otherNames: new FormControl('', Validators.required),
-      dob: new FormControl('', Validators.required),
-      occupation: new FormControl('', Validators.required),
-      address: new FormControl('', Validators.required),
+      firstName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
+      lastName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
+      otherNames: new FormControl('',[Validators.pattern('[a-zA-Z ]*')]),
+      dob: new FormControl('', [Validators.required]),
+      occupation: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
+      address: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
       uploadDocument: new FormControl('', Validators.required)
     
     })
 
 
     this.guardianForm = this._fb.group({
-      motherName: '',
-      motherPhone: '',
-      motherAddress: '',
-      fatherName: '',
-      fatherPhone: '',
-      fatherAddress: '',
+      motherName: new FormControl('', [Validators.pattern('[a-zA-Z ]*')]),
+      motherPhone: new FormControl('', [Validators.pattern('^[0-9]*$')]),
+      motherAddress: new FormControl('', [Validators.pattern('[a-zA-Z ]*')]),
+      fatherName: new FormControl('', [Validators.pattern('[a-zA-Z ]*')]),
+      fatherPhone: new FormControl('', [Validators.pattern('^[0-9]*$')]),
+      fatherAddress: new FormControl('', [Validators.pattern('[a-zA-Z ]*')]),
     })
 
   }
