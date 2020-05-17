@@ -30,5 +30,15 @@ html, body {
     /*change color of underline*/
     background-color: black !important;
   } 
+
+
+  a{
+    color: #00000073;
+    text-decoration: none;
+  }
+
+  a:hover{
+      color: black;
+  }
   
  

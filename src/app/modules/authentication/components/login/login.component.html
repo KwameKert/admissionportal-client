@@ -11,7 +11,7 @@
             <div class="row offset-md-1  col-md-12 col-lg-12 mt-5">
                 
                     <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
-                        <h1 class="text-center mb-5" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">University</h1>
+                        <h1 class="text-center mb-5" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Login</h1>
                        <div class="form-group">
                            <div class="form-label">Username</div>
                            <input type="text" placeholder="Enter username here" class="form-control input-lg" autocomplete="off"  formControlName="username" >
@@ -21,8 +21,9 @@
                         <div class="form-label">Password</div>
                         <input type="password" placeholder="Enter password here" class="form-control input-lg"  autocomplete="off" formControlName="password">
                     </div>
-                        <div class="">
-                            <button class="btn btn-primary" type="submit"   [disabled]="!loginForm.valid"><span class="px-3">Login</span></button>
+                        <div class=" text-center">
+                            <button class="btn btn-primary btn-block" type="submit"   [disabled]="!loginForm.valid"><span class="px-3">Login</span></button>
+                            <p><a href=""   > Don't have an account yet?</a></p>
                            
                         </div>
                       </form>
