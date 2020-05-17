@@ -109,7 +109,8 @@ export class CardDetailsComponent implements OnInit {
   saveForm(){
     let data = {
       amount: this.data.price,
-      program: this.data._id
+      program: this.data._id,
+      method: 'card'
     }
 
     //submit form
@@ -119,6 +120,7 @@ export class CardDetailsComponent implements OnInit {
       this.dialogRef.close({saved: true});
 
     }, error=>{
+
       this._toastr.info("Oops", "Unexpected Error  🥺", {  timeOut:5000});
       console.error(error)
     })

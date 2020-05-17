@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CardDetailsComponent } from '../card-details/card-details.component';
 import { MomoComponent } from '../momo/momo.component';
 import { CrudService } from 'src/app/modules/shared/service/crud-service.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -18,7 +18,7 @@ export class MakeDepositComponent implements OnInit {
   card: boolean ;
   momo: boolean;
 
-  constructor(public dialog: MatDialog, private _crudService: CrudService, private _route: ActivatedRoute){}
+  constructor(public dialog: MatDialog, private _crudService: CrudService, private _route: ActivatedRoute, private _router: Router){}
   ngOnInit(): void {
 
     this.programId = this._route.snapshot.paramMap.get('id');
@@ -45,6 +45,7 @@ export class MakeDepositComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result.saved){
+        this._router.navigate(['/applicant/program'])
         console.log(result)
       }
     

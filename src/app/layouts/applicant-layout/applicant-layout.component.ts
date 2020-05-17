@@ -11,7 +11,7 @@ export class ApplicantLayoutComponent implements OnInit {
 
   links: Array<object> = [
     {name: 'dashboard',url: '/applicant/show_programs', icon: 'home'},
-    {name: 'program',url: '/applicant/program', icon: 'extension'},
+    {name: 'program',url: '/applicant/program', icon: 'assignment'},
   ]
     
 
