@@ -10,10 +10,11 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 })
 export class ViewApplicationComponent implements OnInit {
 
+  isLoading: boolean  = true;
   applicationId: string;
-  applicant: object;
-  program: object;
-  application: object;
+  applicant: any;
+  program: any;
+  application: any;
 
   constructor(private _route: ActivatedRoute, private _crudService: CrudService, private ngxService: NgxUiLoaderService) { }
 
@@ -21,7 +22,7 @@ export class ViewApplicationComponent implements OnInit {
     this.ngxService.start();
     this.applicationId = this._route.snapshot.paramMap.get('id');
     this.fetchApplication()
-    this.ngxService.stop();
+   
   }
 
 
@@ -34,9 +35,14 @@ export class ViewApplicationComponent implements OnInit {
       this.applicant = result.applicant;
       this.program  = result.program;
 
+      this.isLoading = false
+
+      console.log(this.application.createdAt)
+
 
     }, error=>{
       console.error(error)
     })
+    this.ngxService.stop();
   }
 }
