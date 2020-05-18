@@ -7,6 +7,7 @@ import { ListProgramComponent,
 } from '../program';
 
 import { TransactionListComponent} from '../transaction';
+import { ApplicationListComponent } from '../applications/components/application-list/application-list.component';
 
 const routes: Routes = [
 
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: 'list_program', component: ListProgramComponent},
   {path: 'view_program/:id', component: ViewProgramComponent},
   {path: 'list_transaction', component: TransactionListComponent},
+  {path: 'list_applications', component: ApplicationListComponent},
 ]
 
 

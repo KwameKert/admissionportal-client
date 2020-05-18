@@ -1,0 +1,79 @@
+<mat-card class="mat-elevation-z8">
+
+    <mat-card-header>
+        <mat-card-title>All Applications</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+
+
+      <div class="row" style="width:100%" >
+
+        <div class="col-12">
+          <div *ngIf="isLoading; else elseBlock" >
+            <ngx-skeleton-loader
+            count="5"
+            [theme]="{
+              width: '90%',
+              'border-radius': '0',
+              height: '15px',
+              'margin-bottom': '10px'
+            }"
+          ></ngx-skeleton-loader>
+          </div>
+       
+    
+           <ng-template #elseBlock>
+           
+            <table mat-table [dataSource]="dataSource"  >
+    
+            
+            
+            
+              <ng-container matColumnDef="program">
+                <th mat-header-cell *matHeaderCellDef> Program Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.program.name}} </td>
+              </ng-container>
+    
+              <ng-container matColumnDef="applicant">
+                <th mat-header-cell *matHeaderCellDef> Applicant </th>
+                <td mat-cell *matCellDef="let element"> {{element.applicant.username}} </td>
+              </ng-container>
+    
+              <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef>  Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.createdAt | date: 'fullDate'}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef> Status </th>
+                <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+              </ng-container>
+            
+            
+              <ng-container matColumnDef="actions" style="display: none">
+                <th mat-header-cell *matHeaderCellDef> Actions </th>
+                <td mat-cell *matCellDef="let element"> 
+                    <button mat-menu-item (click)="viewApplication(element._id)">
+                        <mat-icon>visibility</mat-icon>
+                        <span>View Program</span>
+                      </button>
+                </td>
+              </ng-container>
+            
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+           </ng-template>
+
+          <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+
+      
+      </div>
+  
+    
+    </mat-card-content>
+</mat-card>  
+
