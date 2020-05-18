@@ -6,12 +6,15 @@ import { ListProgramComponent,
   ViewProgramComponent
 } from '../program';
 
+import { TransactionListComponent} from '../transaction';
+
 const routes: Routes = [
 
 
   {path: 'dashboard', component: AdminDashboardComponent},
   {path: 'list_program', component: ListProgramComponent},
   {path: 'view_program/:id', component: ViewProgramComponent},
+  {path: 'list_transaction', component: TransactionListComponent},
 ]
 
 

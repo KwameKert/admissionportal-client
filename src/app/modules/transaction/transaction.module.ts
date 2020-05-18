@@ -6,16 +6,17 @@ import { CardDetailsComponent } from './components/card-details/card-details.com
 import { MomoComponent } from './components/momo/momo.component';
 import { ReceiptComponent } from './components/receipt/receipt.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { TransactionListComponent } from './components/transaction-list/transaction-list.component';
 
 
 
 @NgModule({
-  declarations: [MakeDepositComponent, CardDetailsComponent, MomoComponent, ReceiptComponent],
+  declarations: [MakeDepositComponent, CardDetailsComponent, MomoComponent, ReceiptComponent, TransactionListComponent],
   imports: [
     CommonModule,
     SharedModule,
     MatProgressSpinnerModule
   ],
-  exports: [MakeDepositComponent,CardDetailsComponent, MomoComponent,  ReceiptComponent]
+  exports: [MakeDepositComponent,CardDetailsComponent, MomoComponent,  ReceiptComponent, TransactionListComponent]
 })
 export class TransactionModule { }

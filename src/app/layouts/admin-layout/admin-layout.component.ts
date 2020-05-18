@@ -12,7 +12,7 @@ export class AdminLayoutComponent implements OnInit {
     {name: 'dashboard',url: '/admin/dashboard', icon: 'home'},
     {name: 'program',url: '/admin/list_program', icon: 'extension'},
     {name: 'appllications',url: '/admin/list_program', icon: 'assignment'},
-    {name: 'transactions',url: '/admin/list_program', icon: 'credit_card'},
+    {name: 'transactions',url: '/admin/list_transaction', icon: 'credit_card'},
   ]
     
 
