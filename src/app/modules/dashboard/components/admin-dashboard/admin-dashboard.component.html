@@ -6,8 +6,8 @@
                     Applicants' Requests
                 </mat-card-title>
             </mat-card-header>
-            <div class="chart">
-                <canvas baseChart 
+            <div class="chart"  *ngIf="pieChartData">
+                <canvas baseChart
                 height="35vh" width="50vw"
                   [data]="pieChartData"
                   [labels]="pieChartLabels"

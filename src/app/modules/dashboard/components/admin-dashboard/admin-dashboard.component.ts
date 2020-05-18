@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ChartType, ChartOptions } from 'chart.js';
 import { Label } from 'ng2-charts';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
-
+import { DashboardService} from '../../service/dashboard.service';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 
 
@@ -12,6 +13,8 @@ import * as pluginDataLabels from 'chartjs-plugin-datalabels';
   styleUrls: ['./admin-dashboard.component.css']
 })
 export class AdminDashboardComponent implements OnInit {
+
+
   public pieChartOptions: ChartOptions = {
     responsive: true,
     legend: {
@@ -27,7 +30,7 @@ export class AdminDashboardComponent implements OnInit {
     }
   };
   public pieChartLabels: Label[] = ['approved', 'pending', 'rejected'];
-  public pieChartData: number[] = [300, 500, 100];
+  public pieChartData: number[]  ;
   public pieChartType: ChartType = 'pie';
   public pieChartLegend = true;
   public pieChartPlugins = [pluginDataLabels];
@@ -37,8 +40,23 @@ export class AdminDashboardComponent implements OnInit {
     },
   ];
 
-  constructor() { }
+  constructor(private _dashboardService: DashboardService, private ngxService: NgxUiLoaderService,) { }
   ngOnInit(): void {
+    this.fetchDashboard();
+  }
+
+
+  fetchDashboard(){
+    this.ngxService.start();
+      this._dashboardService.fetchDashboard().subscribe(data=>{
+
+        let result = data.data
+        this.pieChartData = result.applications;
+
+      }, error=>{
+
+      })
+      this.ngxService.stop();
   }
 
 
