@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ChartType, ChartOptions } from 'chart.js';
 import { Label } from 'ng2-charts';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 import { DashboardService} from '../../service/dashboard.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 
 
@@ -13,6 +15,13 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
   styleUrls: ['./admin-dashboard.component.css']
 })
 export class AdminDashboardComponent implements OnInit {
+
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  
+  isLoading: boolean = true;
+  dataSource = new MatTableDataSource<any>();
+
+  displayedColumns = ['transactionId', 'amount', 'date'];
 
 
   public pieChartOptions: ChartOptions = {
@@ -52,6 +61,9 @@ export class AdminDashboardComponent implements OnInit {
 
         let result = data.data
         this.pieChartData = result.applications;
+        this.dataSource = new MatTableDataSource(result.transactions);
+        this.dataSource.paginator = this.paginator;
+        this.isLoading = false;
 
       }, error=>{
 

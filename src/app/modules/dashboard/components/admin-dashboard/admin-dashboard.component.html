@@ -29,6 +29,55 @@
                 </mat-card-title>
             </mat-card-header>
             <mat-card-content>
+
+                <div class="row" style="width:100%" >
+                      <div *ngIf="isLoading; else elseBlock" >
+                        <ngx-skeleton-loader
+                        count="5"
+                        [theme]="{
+                          width: '90%',
+                          'border-radius': '0',
+                          height: '15px',
+                          'margin-bottom': '10px'
+                        }"
+                      ></ngx-skeleton-loader>
+                      </div>
+                   
+                
+                       <ng-template #elseBlock>
+                        <table mat-table [dataSource]="dataSource"  >
+                
+                        
+                        
+                        
+                          <ng-container matColumnDef="transactionId">
+                            <th mat-header-cell *matHeaderCellDef> Transaction Id </th>
+                            <td mat-cell *matCellDef="let element"> {{element._id}} </td>
+                          </ng-container>
+                
+                          <ng-container matColumnDef="amount">
+                            <th mat-header-cell *matHeaderCellDef> Amount </th>
+                            <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+                          </ng-container>
+                
+                        
+                          <ng-container matColumnDef="date">
+                            <th mat-header-cell *matHeaderCellDef> Date </th>
+                            <td mat-cell *matCellDef="let element"> {{element.createdAt | date: 'fullDate'}} </td>
+                          </ng-container>
+            
+                       
+                    
+                          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+                       </ng-template>
+            
+                      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+                  
+            
+                  </div>
+              
                 
             </mat-card-content>
         </mat-card>
