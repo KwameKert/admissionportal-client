@@ -42,7 +42,7 @@ export class AdminDashboardComponent implements OnInit {
       },
     }
   };
-  public pieChartLabels: Label[] = ['approved', 'pending', 'rejected'];
+  public pieChartLabels: Label[] = ['rejected','approved', 'pending'];
   public pieChartData: number[]  ;
   public pieChartType: ChartType = 'pie';
   public pieChartLegend = true;

@@ -43,6 +43,7 @@ export class ApplicationListComponent implements OnInit {
 
   viewApplication(id: string){
 
+    this._router.navigate([`/admin/view_application/${id}`])
   }
 
 }
