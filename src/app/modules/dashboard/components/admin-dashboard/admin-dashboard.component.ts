@@ -20,6 +20,10 @@ export class AdminDashboardComponent implements OnInit {
   
   isLoading: boolean = true;
   dataSource = new MatTableDataSource<any>();
+  applicants: number;
+  applications: number;
+  transactions: number;
+  programs: number;
 
   displayedColumns = ['transactionId', 'amount', 'date'];
 
@@ -60,8 +64,12 @@ export class AdminDashboardComponent implements OnInit {
       this._dashboardService.fetchDashboard().subscribe(data=>{
 
         let result = data.data
-        this.pieChartData = result.applications;
-        this.dataSource = new MatTableDataSource(result.transactions);
+        this.pieChartData = result.applications.chart;
+        this.dataSource = new MatTableDataSource(result.transactions.list);
+        this.applicants = result.applications.applicants;
+        this.transactions = result.transactions.count;
+        this.applications = result.applications.count;
+        this.programs = result.programs.count;
         this.dataSource.paginator = this.paginator;
         this.isLoading = false;
 
