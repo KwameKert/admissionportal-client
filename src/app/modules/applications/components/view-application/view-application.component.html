@@ -1,1 +1,45 @@
-<p>view-application works!</p>
+<div class="row">
+    <div class="col-md-4 col-lg-4">
+
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>
+                    Program Details
+                </mat-card-title>
+            </mat-card-header>
+
+            <mat-card-content>
+
+                
+                <img [src]="program.image_url"    class="img-thumbnail mb-3"  *ngIf="program.image_url"/>
+
+                <p>Program: {{program.name}}</p>
+                <p>Faculty: {{program.faculty}}</p>
+                <p>Duration: {{program.length}}</p>
+                <p>Deadline: {{program.endDate | date: 'fullDate'}}</p>
+
+            </mat-card-content>
+        </mat-card>
+
+    </div>
+
+    <div class="col-md-8 col-lg-8 col-sm-12">
+
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>
+                    Applicant Details
+                </mat-card-title>
+            </mat-card-header>
+
+            <mat-card-content>
+                
+
+            </mat-card-content>
+        </mat-card>
+        
+    </div>
+
+
+
+</div>
