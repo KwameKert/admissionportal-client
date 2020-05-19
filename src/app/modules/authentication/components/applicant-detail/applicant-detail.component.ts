@@ -12,6 +12,7 @@ import { AuthService } from '../../service/auth.service';
 })
 export class ApplicantDetailComponent implements OnInit {
 
+  isLoading: boolean = false;
   userId: string;
    formData = new FormData();
   personalForm: FormGroup;
@@ -57,6 +58,8 @@ export class ApplicantDetailComponent implements OnInit {
 
   saveData(){
 
+    this.isLoading = true;
+
     //mergin formbuilders
     let data = {...this.personalForm.value, ...this.guardianForm.value}
     let result = Object.assign({}, data);
@@ -78,6 +81,8 @@ export class ApplicantDetailComponent implements OnInit {
       this._toastr.info("An error occured ","Aw snap!",{
         timeOut:2000
       })
+    }).add(()=>{
+      this.isLoading = false;
     })
 
 

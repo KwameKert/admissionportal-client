@@ -38,20 +38,7 @@ intercept(
 
 
                     }
-                
-                    // if(err.status == 417){
-                    //     this._toastr.info("Authentication invalid", err.error.message+"  🥺", {  timeOut:5000});
-                    // }
-                    
-                    // if(err.status == 403){
-                    //     this._toastr.info("Authentication invalid", "Unexpected Error  🥺", {  timeOut:5000});
-                    //     this._router.navigate(['/login']);
-                    // }
-
-                    // if(err.status == 403){
-                    //     this._toastr.info("Authentication invalid", "Unexpected Error  🥺", {  timeOut:5000});
-                    //     this._router.navigate(['/login']);
-                    // }
+              
                   
                 }
                 return of(err);
