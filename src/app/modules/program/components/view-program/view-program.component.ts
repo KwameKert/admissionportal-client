@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router} from '@angular/router';
 import { CrudService } from 'src/app/modules/shared/service/crud-service.service';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-view-program',
@@ -15,7 +16,7 @@ export class ViewProgramComponent implements OnInit {
 
   programDetail: any;
 
-  constructor(private _route: ActivatedRoute, private _crudService: CrudService, private _router: Router) { }
+  constructor(private _route: ActivatedRoute, private _crudService: CrudService, private _router: Router , private _ngxService: NgxUiLoaderService) { }
 
   ngOnInit(): void {
 
@@ -27,6 +28,7 @@ export class ViewProgramComponent implements OnInit {
   }
 
   getProgram(){
+    this._ngxService.start();
     this._crudService.fetchItem({id: this.programId, module: 'program'}).subscribe(result=>{
 
       this.programData = result.data
@@ -34,6 +36,8 @@ export class ViewProgramComponent implements OnInit {
     }, error=>{
       console.error(error)
     })
+
+    this._ngxService.stop()
   }
 
   makeDeposit(id){

@@ -30,7 +30,7 @@ export class CardDetailsComponent implements OnInit {
   @ViewChild('amex') amex: ElementRef; 
  
   constructor(private _crudService: CrudService,
-    private _fb: FormBuilder, private _toastr: ToastrService,   private ngxService: NgxUiLoaderService,   public dialogRef: MatDialogRef<CardDetailsComponent>,
+    private _fb: FormBuilder, private _toastr: ToastrService,   private _ngxService: NgxUiLoaderService,   public dialogRef: MatDialogRef<CardDetailsComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, private el: ElementRef) { }
 
  
@@ -107,6 +107,9 @@ export class CardDetailsComponent implements OnInit {
 
 
   saveForm(){
+
+    this._ngxService.start();
+
     let data = {
       amount: this.data.price,
       program: this.data._id,
@@ -124,7 +127,10 @@ export class CardDetailsComponent implements OnInit {
       this._toastr.info("Oops", "Unexpected Error  🥺", {  timeOut:5000});
       console.error(error)
     })
+
+    this._ngxService.stop()
   }
+
 
 
 
