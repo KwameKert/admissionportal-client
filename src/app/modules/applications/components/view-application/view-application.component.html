@@ -45,20 +45,30 @@
             <mat-card>
                 <mat-card-header>
                     <mat-card-title>
-                        Applicant Details
+                        Applicant Details 
+                       
                     </mat-card-title>
                 </mat-card-header>
+                <hr>
     
                 <mat-card-content>
                  
                     <div class="row" >
                         <div class="col-md-12 col-lg-12">
                             <p>Date applied: {{application.createdAt | date: 'fullDate'}}</p>
-                            <p>Full name: {{applicant.details[0].firstName }} {{ applicant.details[0].otherNames}} {{ applicant.details[0].lastName  }}</p>
+                            <p>Full name: {{applicant.details[0].firstName  | titlecase}} {{ applicant.details[0].otherNames  | titlecase }} {{ applicant.details[0].lastName  | titlecase }}</p>
+                            <p>Age:  {{  age }}</p>
+                            <p>Address: {{ applicant.details[0].address  | titlecase}}  </p>
+                            <p>Email: {{ applicant.email }}</p>
                         </div>
                     </div>
     
                 </mat-card-content>
+
+                <mat-card-actions class="text-right">
+                    <button mat-raised-button color="primary" (click)="applicationResponse('aprroved')"> <mat-icon> done_all</mat-icon>Approve</button>
+                    <button mat-raised-button color="warn"  (click)="applicationResponse('reject')"> <mat-icon> not_interested</mat-icon>Reject</button>
+                  </mat-card-actions>
             </mat-card>
             
         </div> 

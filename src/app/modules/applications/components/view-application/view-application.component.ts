@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CrudService } from 'src/app/modules/shared/service/crud-service.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { threadId } from 'worker_threads';
 
 @Component({
   selector: 'app-view-application',
@@ -15,6 +16,9 @@ export class ViewApplicationComponent implements OnInit {
   applicant: any;
   program: any;
   application: any;
+  d = new Date();
+  age: number;
+  year: number  = this.d.getFullYear();
 
   constructor(private _route: ActivatedRoute, private _crudService: CrudService, private ngxService: NgxUiLoaderService) { }
 
@@ -35,14 +39,24 @@ export class ViewApplicationComponent implements OnInit {
       this.applicant = result.applicant;
       this.program  = result.program;
 
+      let d  = new Date(this.applicant.details[0].dob);
+     
+     this.age = this.year - d.getFullYear()
+     // console.log(this.age)
+
       this.isLoading = false
 
-      console.log(this.application.createdAt)
+     // console.log(this.application.createdAt)
 
 
     }, error=>{
       console.error(error)
     })
     this.ngxService.stop();
+  }
+
+
+  applicationResponse(response: string){
+    console.log(response)
   }
 }
