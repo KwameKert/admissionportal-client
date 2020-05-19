@@ -3,6 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { CrudService } from 'src/app/modules/shared/service/crud-service.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { threadId } from 'worker_threads';
+import { MatDialog } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
+import { ApplicationResponseComponent } from '../application-response/application-response.component';
 
 @Component({
   selector: 'app-view-application',
@@ -20,7 +23,7 @@ export class ViewApplicationComponent implements OnInit {
   age: number;
   year: number  = this.d.getFullYear();
 
-  constructor(private _route: ActivatedRoute, private _crudService: CrudService, private ngxService: NgxUiLoaderService) { }
+  constructor(private _route: ActivatedRoute, private _crudService: CrudService, private ngxService: NgxUiLoaderService,  public dialog: MatDialog, private _toastr: ToastrService,) { }
 
   ngOnInit(): void {
     this.ngxService.start();
@@ -57,6 +60,36 @@ export class ViewApplicationComponent implements OnInit {
 
 
   applicationResponse(response: string){
-    console.log(response)
+    let data =  {
+      action : response,
+      id: this.applicationId
+    }
+
+
+    const dialogRef = this.dialog.open(ApplicationResponseComponent, {
+      width: '550px',
+      height: '180px',
+      data: data
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.event){
+
+        this._toastr.success("Applcation Response. 🥺"," Success",{
+          timeOut:2000
+        })
+      
+      }else{
+
+        this._toastr.error("Oops an error. 🥺","",{
+          timeOut:2000
+        })
+      }
+    });
   }
+
+
+
+
+
 }
