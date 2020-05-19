@@ -3,7 +3,7 @@
             <div class="col-md-12 text-center ">
                 <form [formGroup]="programForm" (ngSubmit)="saveProgram()">
                     <mat-form-field appearance="outline" style="width:500px"  >
-                        <mat-label>Full Name</mat-label>
+                        <mat-label> Name</mat-label>
                         <input matInput placeholder="Telecommunication Engineering"  formControlName="name" >
                         <mat-error *ngIf="programForm.get('name').invalid"> Invalid input </mat-error>
                       </mat-form-field>
@@ -58,7 +58,7 @@
 
 
 
-                      <button mat-raised-button color="primary" class="float-right mb-1" type="submit"  [disabled]="!programForm.valid"> <mat-icon>done</mat-icon> Save User</button>
+                      <button mat-raised-button color="primary" class="float-right mb-1" type="submit"  [disabled]="!programForm.valid"> <mat-icon>done</mat-icon> Save Program</button>
         
                 </form>
             </div>

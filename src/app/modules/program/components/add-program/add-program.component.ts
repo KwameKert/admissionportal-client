@@ -54,7 +54,7 @@ export class AddProgramComponent implements OnInit {
     
     
 
-    this.ngxService.stop();
+   
 
   
   }
@@ -116,6 +116,8 @@ export class AddProgramComponent implements OnInit {
     this._toastr.info("Ooops", "Unexpected Error  🥺", {  timeOut:5000});
       console.error(error)
     })
+
+    this.ngxService.stop();
 
    
   }

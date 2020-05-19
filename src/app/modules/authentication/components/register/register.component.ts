@@ -60,10 +60,10 @@ export class RegisterComponent implements OnInit {
       console.error("error ",error)
   
     
-    },);
-
-    this.isLoading = false;
-  
+    }).add(()=>{
+      this.isLoading = false;
+    });
+    
   }
 
 

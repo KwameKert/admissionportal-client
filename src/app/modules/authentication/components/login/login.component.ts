@@ -18,6 +18,8 @@ export class LoginComponent implements OnInit {
   
 
   ngOnInit() {
+    
+
     this.loginForm = this._fb.group({
       username: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required)
@@ -28,7 +30,7 @@ export class LoginComponent implements OnInit {
 
     this.isLoading = true;
 
-    this._authService.loginUser(this.loginForm.value).subscribe(data=>{
+    this._authService.loginUser(this.loginForm.value).subscribe(async data=>{
 
       let authData = {
         userId: data.user.id,
@@ -38,12 +40,14 @@ export class LoginComponent implements OnInit {
         isActivated: data.user.isActivated
     }
     
-    this._authService.setUserDetails(authData);
+    await this._authService.setUserDetails(authData);
 
 
     switch(authData.role){
+      
 
       case "admin":
+        console.log("Entered here")
         this.router.navigate(['/admin/dashboard']);
         break;
 
@@ -69,10 +73,12 @@ export class LoginComponent implements OnInit {
       console.error("error ",error)
   
     
-    },);
-
-    this.isLoading = false;
+    }).add(()=>{
+      this.isLoading = false;
   
+    })
+
+   
   
 
   
