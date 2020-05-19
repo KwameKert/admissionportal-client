@@ -20,11 +20,11 @@ export class AuthService {
   private loggedInStatus = localStorage.getItem("status");
 
  loginUser(data: any ): Observable<any>{
-   return this._httpClient.post(`http://localhost:3000/users/login`, data);
+   return this._httpClient.post(`${this._baseUrl}/users/login`, data);
  }
 
  registerUser(data: any ): Observable<any>{
-   return this._httpClient.post(`http://localhost:3000/users/`, data);
+   return this._httpClient.post(`${this._baseUrl}/users/`, data);
  }
 
  setUserDetails(authData: any){
