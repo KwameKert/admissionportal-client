@@ -9,6 +9,7 @@ import { CrudService } from 'src/app/modules/shared/service/crud-service.service
 })
 export class MyProgramComponent implements OnInit {
 
+  isLoaded: boolean = false;
   applications: Array<object>;
   constructor(private _crudService: CrudService
     ) { }
@@ -22,6 +23,7 @@ export class MyProgramComponent implements OnInit {
     this._crudService.fetchAll("myapplications").subscribe(data=>{
 
       this.applications = data.data;
+      this.isLoaded = true;
     }, error =>{
       console.error(error)
     })

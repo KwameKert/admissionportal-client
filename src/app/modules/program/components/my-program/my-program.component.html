@@ -7,6 +7,20 @@
     </mat-card-header>
         <mat-card-content>
 
+          <div *ngIf="!isLoaded; else elseBlock" >
+            <ngx-skeleton-loader
+            count="5"
+            [theme]="{
+              width: '90%',
+              'border-radius': '0',
+              height: '15px',
+              'margin-bottom': '10px'
+            }"
+          ></ngx-skeleton-loader>
+          </div>
+        
+          <ng-template #elseBlock>
+
             <div class="row" style="width:100%" >
                 <div class="col-12"> 
                     <table class="table">
@@ -35,7 +49,7 @@
                 </div>
 
                 </div>
-
+          </ng-template>
 
           
         </mat-card-content>
