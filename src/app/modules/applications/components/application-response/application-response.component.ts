@@ -25,9 +25,8 @@ export class ApplicationResponseComponent  {
         data:{status: this.data.action}
       }
 
-
       this._applicationService.updateApplication(response).subscribe(data=>{
-        this.dialogRef.close({evt: true});
+        this.dialogRef.close({evt: true, data: data.data});
       }, error=>{
         this.dialogRef.close({evt: false});
       })

@@ -73,18 +73,24 @@ export class ViewApplicationComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result.event){
 
-        this._toastr.success("Applcation Response. 🥺"," Success",{
+      if(result == undefined){
+
+      }else if(result.evt && result.data != null){
+
+
+        this._toastr.success(`Applcation ${response}ed`," Success",{
           timeOut:2000
         })
       
-      }else{
+      }else if(!result.evt && data == null) {
 
         this._toastr.error("Oops an error. 🥺","",{
           timeOut:2000
         })
       }
+
+
     });
   }
 
