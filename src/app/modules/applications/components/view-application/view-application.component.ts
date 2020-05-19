@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CrudService } from 'src/app/modules/shared/service/crud-service.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { threadId } from 'worker_threads';
@@ -23,7 +23,7 @@ export class ViewApplicationComponent implements OnInit {
   age: number;
   year: number  = this.d.getFullYear();
 
-  constructor(private _route: ActivatedRoute, private _crudService: CrudService, private ngxService: NgxUiLoaderService,  public dialog: MatDialog, private _toastr: ToastrService,) { }
+  constructor(private _route: ActivatedRoute, private _crudService: CrudService, private ngxService: NgxUiLoaderService,  public dialog: MatDialog, private _toastr: ToastrService, private _router: Router) { }
 
   ngOnInit(): void {
     this.ngxService.start();
@@ -82,6 +82,8 @@ export class ViewApplicationComponent implements OnInit {
         this._toastr.success(`Applcation ${response}ed`," Success",{
           timeOut:2000
         })
+
+        this._router.navigate(['/admin/list_applications']);
       
       }else if(!result.evt && data == null) {
 

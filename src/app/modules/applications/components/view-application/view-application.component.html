@@ -66,8 +66,13 @@
                 </mat-card-content>
 
                 <mat-card-actions class="text-right">
-                    <button mat-raised-button color="primary" (click)="applicationResponse('aprrove')"> <mat-icon> done_all</mat-icon>Approve</button>
-                    <button mat-raised-button color="warn"  (click)="applicationResponse('reject')"> <mat-icon> not_interested</mat-icon>Reject</button>
+                    <button mat-raised-button color="primary" *ngIf="application.status != 'pending'; else elseBlock" disabled> {{ application.status | titlecase}}ed</button>
+
+                    <ng-template #elseBlock>
+                        <button mat-raised-button color="primary" (click)="applicationResponse('approve')"> <mat-icon> done_all</mat-icon>Approve</button>
+                        <button mat-raised-button color="warn"  (click)="applicationResponse('reject')"> <mat-icon> not_interested</mat-icon>Reject</button>
+                    </ng-template>
+               
                   </mat-card-actions>
             </mat-card>
             
